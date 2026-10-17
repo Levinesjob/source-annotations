@@ -1,0 +1,2 @@
+# Optional: only for README image production; PDF generation does not need Pillow.
+Pillow==12.3.0

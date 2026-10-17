@@ -36,3 +36,9 @@ PyMuPDF 1.26.5：https://pymupdf.readthedocs.io/en/latest/about.html
 
 按用户要求，标注副本移除了首页竖排arXiv版本条；原论文版本链接、作者归属和许可仍保留。原始下载文件不变。
 
+
+## README展示素材与可选工具
+
+`examples/waypoint-opd/showcase/`为同一固定v1论文及标注副本的静态裁图组合，包含原论文CC BY 4.0内容；外围说明与构图由本项目添加，见[素材清单](docs/showcase.md)。使用随包Noto字体，不复制第三方产品截图或生成虚构界面。
+
+展示脚本可选依赖Pillow 12.3.0，按[官方许可](https://pillow.readthedocs.io/en/stable/about.html#license)适用MIT-CMU；仅通过依赖安装，不随仓库重新分发二进制。它不加入PDF运行必需依赖。

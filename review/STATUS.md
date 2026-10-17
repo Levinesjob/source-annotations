@@ -21,3 +21,9 @@
 | GitHub | 用户授权直接发布，仓库 https://github.com/Levinesjob/source-annotations；预览版明确保留新版独立复核和完整手机操作未完成项 |
 
 未完成项集中见[TODO](../TODO.md)。完整公开版需完成新版独立复核；未完成的手机操作与内容审查范围必须显著披露。
+
+## 仓库展示 · 2026-10-18
+
+[公开预览](https://github.com/Levinesjob/source-annotations/releases/tag/v0.1.0-preview.1)已发布；45个远端文件与公开提交57cfefc9f9d6aa52462f4ec2fef3c2fe7be9bcb5逐项核对，Skill入口下载一致。不是完整公开归档下载/重建验证。
+
+本轮仅更新展示与文档：23项测试再次通过，原成品20页/44条几何及文字检查通过；新增5张真实PDF素材和成品GoTo交叉核对。Markdown宽屏/窄屏、浅深背景渲染记录见[展示验收](SHOWCASE-2026-10-18.md)。未据此提高内容审查、手机实机或提速的认证范围。
