@@ -1,0 +1,4 @@
+interface:
+  display_name: "论文精读与学术导览"
+  short_description: "通读原文后标注重点、词句与公式，添加可跳转的学术导览，保留原文并检查版式"
+  default_prompt: "使用 $source-annotations 精读这份论文，标注核心证据、难词长句和公式，按需添加学术导览；保留原文件并报告实际验收范围。"

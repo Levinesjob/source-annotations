@@ -1,0 +1,24 @@
+name: 使用问题或内容纠错
+description: 报告无法使用、解释不准确或排版问题
+body:
+  - type: input
+    id: environment
+    attributes:
+      label: 使用环境
+      description: 系统、智能体、模型（如已知）、Python与工具版本
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: 论文版本与页码
+      description: 请使用公开链接，勿上传公司或私人材料
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: 预期、实际结果与复现步骤
+      description: 内容纠错请附准确原句及依据；截图请先移除私人信息
+    validations:
+      required: true

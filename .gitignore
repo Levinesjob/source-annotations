@@ -1,0 +1,7 @@
+.venv/
+local/
+__pycache__/
+*.pyc
+review/private/
+review/cursor-review.md
+review/reproduced/
