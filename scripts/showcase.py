@@ -98,7 +98,7 @@ def main():
 
     log=[]; im=Image.new('RGB',(780,1040),BG)
     text(im,(48,38),'SOURCE ANNOTATIONS',23,BLUE)
-    text(im,(48,96),'原文旁的\nAI 学术精读助手',44)
+    text(im,(48,96),'把解释放回\n正在读的原文旁',44)
     text(im,(48,238),'同一页的原句与旁注，分区放大',24,MUTED)
     text(im,(48,302),'原句 · 原论文第 1 页',22,BLUE)
     paste(im,crop(doc,1,[141,333.6,242,344.9],684,log,'Exact source term, magnified'),(48,347))

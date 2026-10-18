@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="860" viewBox="0 0 1440 860" role="img" aria-labelledby="title">
+<title id="title">Source Annotations：围绕亲自阅读原论文的四项辅助</title>
+<rect width="1440" height="860" fill="#f6f5f1"/>
+<polyline points="592,245 640,290 640,323" fill="none" stroke="#c6cdcf" stroke-width="2"/>
+<polyline points="848,245 800,290 800,323" fill="none" stroke="#c6cdcf" stroke-width="2"/>
+<polyline points="592,590 640,550 640,520" fill="none" stroke="#c6cdcf" stroke-width="2"/>
+<polyline points="848,590 800,550 800,520" fill="none" stroke="#c6cdcf" stroke-width="2"/>
+<polyline points="64,97 64,62 98,62" fill="none" stroke="#3d6278" stroke-width="2"/>
+<text x="82.00" y="86.00" font-size="22" fill="#3d6278" font-family="Noto Sans CJK SC, Microsoft YaHei, sans-serif">Reading Brief</text>
+<text x="82.00" y="139.00" font-size="34" fill="#20282c" font-family="Noto Sans CJK SC, Microsoft YaHei, sans-serif">阅读导览</text>
+<text x="82.00" y="188.00" font-size="25" fill="#20282c" font-family="Noto Sans CJK SC, Microsoft YaHei, sans-serif">先理清问题，再选阅读入口。</text>
+<text x="82.00" y="236.00" font-size="21" fill="#606b70" font-family="Noto Sans CJK SC, Microsoft YaHei, sans-serif">问题 / 先修知识 · 路线 / 原文入口</text>
+<polyline points="824,97 824,62 858,62" fill="none" stroke="#3d6278" stroke-width="2"/>
+<text x="842.00" y="84.00" font-size="22" fill="#3d6278" font-family="Noto Sans CJK SC, Microsoft YaHei, sans-serif">In-context Notes</text>
+<text x="842.00" y="139.00" font-size="34" fill="#20282c" font-family="Noto Sans CJK SC, Microsoft YaHei, sans-serif">原文旁注</text>
+<text x="842.00" y="188.00" font-size="25" fill="#20282c" font-family="Noto Sans CJK SC, Microsoft YaHei, sans-serif">把解释放在正在读的段落旁。</text>
+<text x="842.00" y="236.00" font-size="21" fill="#606b70" font-family="Noto Sans CJK SC, Microsoft YaHei, sans-serif">术语 / 长句 · 公式 / 机制</text>
+<polyline points="64,636 64,601 98,601" fill="none" stroke="#3d6278" stroke-width="2"/>
+<text x="82.00" y="625.00" font-size="22" fill="#3d6278" font-family="Noto Sans CJK SC, Microsoft YaHei, sans-serif">Evidence Trace</text>
+<text x="82.00" y="678.00" font-size="34" fill="#20282c" font-family="Noto Sans CJK SC, Microsoft YaHei, sans-serif">证据追溯</text>
+<text x="82.00" y="727.00" font-size="25" fill="#20282c" font-family="Noto Sans CJK SC, Microsoft YaHei, sans-serif">看清判断由什么支持、限于哪里。</text>
+<text x="82.00" y="775.00" font-size="21" fill="#606b70" font-family="Noto Sans CJK SC, Microsoft YaHei, sans-serif">实测 / 推导 · 作者主张 / 导读解释</text>
+<polyline points="824,636 824,601 858,601" fill="none" stroke="#3d6278" stroke-width="2"/>
+<text x="842.00" y="625.00" font-size="22" fill="#3d6278" font-family="Noto Sans CJK SC, Microsoft YaHei, sans-serif">Reproducible Output</text>
+<text x="842.00" y="678.00" font-size="34" fill="#20282c" font-family="Noto Sans CJK SC, Microsoft YaHei, sans-serif">可复现产物</text>
+<text x="842.00" y="727.00" font-size="25" fill="#20282c" font-family="Noto Sans CJK SC, Microsoft YaHei, sans-serif">留下能复查、保存和重建的阅读结果。</text>
+<text x="842.00" y="775.00" font-size="21" fill="#606b70" font-family="Noto Sans CJK SC, Microsoft YaHei, sans-serif">JSON / 两种 PDF · Mobile HTML / SHA256</text>
+<text x="559.95" y="368.00" font-size="44" fill="#20282c" font-family="Noto Sans CJK SC, Microsoft YaHei, sans-serif">Read the paper,</text>
+<text x="496.54" y="433.00" font-size="44" fill="#20282c" font-family="Noto Sans CJK SC, Microsoft YaHei, sans-serif">not just the summary.</text>
+<text x="488.00" y="499.00" font-size="29" fill="#3d6278" font-family="Noto Sans CJK SC, Microsoft YaHei, sans-serif">读摘要用于筛选，理解仍要回到原文</text>
+<polyline points="64,810 1376,810" fill="none" stroke="#c6cdcf" stroke-width="2"/>
+<text x="64.00" y="843.00" font-size="18" fill="#606b70" font-family="Noto Sans CJK SC, Microsoft YaHei, sans-serif">SOURCE ANNOTATIONS / 让理解辅助回到原文现场</text>
+</svg>

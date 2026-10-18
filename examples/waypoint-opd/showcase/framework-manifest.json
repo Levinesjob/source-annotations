@@ -1,0 +1,21 @@
+{
+  "type": "reader-value diagram; not a screenshot",
+  "source": "scripts/framework_overview.py",
+  "font": "bundled Noto Sans CJK SC / SIL OFL 1.1",
+  "figures": {
+    "framework-overview": {
+      "size": [
+        1440,
+        860
+      ],
+      "png_sha256": "95a566c6a9a48124ead1953f376a636cdecdadc841851e85cfbdf887e2396c5c"
+    },
+    "framework-mobile": {
+      "size": [
+        780,
+        1040
+      ],
+      "png_sha256": "f632a6de7ba815f444550849128405589f511b1b9b56eb704b0e4206323c6b2f"
+    }
+  }
+}

@@ -20,7 +20,7 @@
 | hero-mobile.png | 术语原句与同页旁注分区放大 | 相同PDF中a02对应位置，不是新界面 |
 | evidence-mobile.png | 窄屏的导览和证据放大 | 与桌面证据图相同GoTo和旁注 |
 
-所有图是**静态PDF裁图组合**，不是阅读器界面截图或操作录像。裁剪会省略周边内容，但不重写可见正文；查看完整语境请打开样例PDF。证据图的终点通过成品真实GoTo和报告交叉验证，不凭文案编造位置。
+上述5张论文展示图是**静态PDF裁图组合**，不是阅读器界面截图或操作录像。裁剪会省略周边内容，但不重写可见正文；查看完整语境请打开样例PDF。证据图的终点通过成品真实GoTo和报告交叉验证，不凭文案编造位置。
 
 [manifest.json](../examples/waypoint-opd/showcase/manifest.json)记录输入SHA256、每张图尺寸、物理页序、PDF点坐标和图像SHA256。原论文页码与PDF物理页码不同，前置导览使原文第4页对应物理第5页。原内容按[CC BY 4.0及第三方说明](../THIRD_PARTY_NOTICES.md)归属，展示不暗示论文作者认可项目。
 
@@ -41,3 +41,18 @@
 - 状态与来源：review/SHOWCASE-2026-10-18.md、review/STATUS.md、TODO.md、CHANGELOG.md、THIRD_PARTY_NOTICES.md。
 
 共19个新增或修改文件；已有LICENSE、SKILL.md、必需依赖与PDF算法不变。
+
+
+## 四角阅读框架（后续改版）
+
+`framework-overview.png`（1440×860）与`framework-mobile.png`（780×1040）围绕亲自读原论文说明阅读导览、原文旁注、证据追溯和可复现产物。它们是**阅读价值说明图，不是软件界面截图或技术模块依赖图**。关键词来自已有SKILL、JSON和导出脚本；“两种PDF”指只插导览与正文旁注两条不同路径，不代表结构保留保证相同。
+
+```powershell
+.\.venv\Scripts\python.exe scripts/framework_overview.py
+```
+
+同一次运行输出两张PNG、两份可编辑SVG和`framework-manifest.json`。PNG使用随包Noto字体并不透明渲染，作为README的稳定预览；SVG保留可编辑文字，未嵌入字体，单独打开时依赖Noto或系统中文字体，不保证不同系统的字形完全一致。两种格式共用同一绘图场景，生成时检查文本越界。
+
+手机主图只将外围标题从“AI学术精读助手”改为“把解释放回正在读的原文旁”；论文裁图、原句、批注没有改写。阅读体验和差异通过真实局部展示，不靠抽象工具名称说明。新版记录见[四角改版验收](readme-framework-review.md)。
+
+本次后续改版共13个文件：README.md、THIRD_PARTY_NOTICES.md、docs/showcase.md、docs/readme-framework-review.md、scripts/showcase.py、scripts/framework_overview.py；showcase目录的hero-mobile.png、manifest.json，以及新增的framework-overview.png/.svg、framework-mobile.png/.svg、framework-manifest.json。上一节19文件为前一轮历史清单。
