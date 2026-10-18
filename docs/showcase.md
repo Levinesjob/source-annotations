@@ -59,6 +59,8 @@
 
 ## 用动作展示阅读过程
 
+以下动图章节记录Waypoint首轮展示；当前主案例已换成[Attention Is All You Need](../examples/attention-is-all-you-need/README.md)，原示例与其来源记录继续保留。Attention使用相同的动图渲染器和单独的showcase字段，不套用Waypoint的原句、坐标或背景资料。新增scripts/attention_showcase.py生成自己的导览页预览和少量原句对比；完整研究页及内嵌全文HTML只在local本地生成。具体检查见[主案例验收](../review/ATTENTION-2026-10-18.md)。
+
 README首图改用标题到核心观点的动画；正文分别展示补背景、回查原文两个动作，保留四角总览与原文/旁注对比。旧静态图仍在仓库，不覆盖或删除。
 
 ```powershell

@@ -351,7 +351,7 @@ def build(source, annotations, output, pages=None):
     dest.set_toc(toc)
     dest.set_metadata({'title':data['paper']['title']+' | annotated reading copy',
                        'author':'Original paper: '+data['paper']['authors'],
-                       'subject':'CC BY 4.0 original; Chinese annotations added by source-annotations. '+data['paper']['url'],
+                       'subject':data['paper'].get('license','see source')+' original; Chinese annotations added by source-annotations. '+data['paper']['url'],
                        'creator':'source-annotations 0.1.0-preview'})
     output.parent.mkdir(parents=True, exist_ok=True)
     # Retain the complete OTF: subsetting CFF fonts can corrupt outlines in

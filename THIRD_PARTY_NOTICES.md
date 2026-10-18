@@ -13,6 +13,12 @@ arXiv:2610.21601v1，2026-10-15。
 
 标注副本和预览图片包含原论文内容，已增加中文解释、高亮、下划线和必要页边距。原正文和图表不改写，不暗示原作者认可本工具。原论文内容的权利不由本仓库MIT许可覆盖。
 
+## 新主案例：Attention Is All You Need
+
+Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Łukasz Kaiser, Illia Polosukhin。固定[arXiv:1706.03762v1](https://arxiv.org/abs/1706.03762v1)，2017-06-12，15页。
+
+该版本页面链接的是[arXiv非独占分发许可](https://arxiv.org/licenses/nonexclusive-distrib/1.0/license.html)（2026-10-18核对），不是CC BY 4.0。本仓库没有取得完整研究页的通用再分发授权；完整标注PDF、导览插页PDF和内嵌全文HTML只在本地生成，不进入公开仓库。公开导览由本项目编写；标题、少量原句与选择性证据引文归原作者，均不由MIT重新授权。展示不暗示原作者认可本项目。
+
 ## 中文字体
 
 学术导览使用 Noto Serif CJK SC Regular，Google / Adobe，SIL OFL 1.1。
@@ -39,7 +45,7 @@ PyMuPDF 1.26.5：https://pymupdf.readthedocs.io/en/latest/about.html
 
 ## README展示素材与可选工具
 
-`examples/waypoint-opd/showcase/`中的论文截图及动图裁片来自同一固定v1论文及标注副本，包含原论文CC BY 4.0内容；框架图是本项目的阅读价值说明图，不含论文裁图；外围说明、重排的导览内容与构图由本项目添加，见[素材清单](docs/showcase.md)。使用随包Noto字体，不复制第三方产品截图或生成虚构界面。动图是动作示意，不是录屏或即时生成演示。
+`examples/waypoint-opd/showcase/`中的论文截图及动图裁片来自同一固定v1论文及标注副本，包含原论文CC BY 4.0内容。`examples/attention-is-all-you-need/showcase/`只包含本项目导览和少量原句/标题节选，不是完整研究页；原文内容归原作者。框架图是本项目的阅读价值说明图，不含论文裁图；外围说明、重排的导览内容与构图由本项目添加，见[素材清单](docs/showcase.md)。使用随包Noto字体，不复制第三方产品截图或生成虚构界面。动图是动作示意，不是录屏或即时生成演示。
 
 背景动图中“策略是一条规则……”为本项目对[Spinning Up / Policies](https://spinningup.openai.com/en/latest/spinningup/rl_intro.html#policies)开头定义的中文转述（2026-10-18核对），用于说明现有链接的阅读去向；不包含该网站的截图，也不暗示其作者认可本项目。
 

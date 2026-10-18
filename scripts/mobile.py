@@ -12,6 +12,7 @@ def build_mobile(source,datafile,output,annotated=None):
     source,datafile,output=map(Path,(source,datafile,output))
     annotated=Path(annotated) if annotated else output.parent/'waypoint-opd-v1-annotated.pdf'
     data=json.loads(datafile.read_text(encoding='utf-8'))
+    display_title=e(data['paper'].get('short_title') or data['paper']['title'].split(':',1)[0])
     report=json.loads(annotated.with_suffix('.report.json').read_text(encoding='utf-8'))
     if hashlib.sha256(source.read_bytes()).hexdigest()!=data['paper']['sha256']:
         raise ValueError('Source SHA256 differs')
@@ -21,10 +22,10 @@ def build_mobile(source,datafile,output,annotated=None):
     if digest!=report['output_sha256']:
         raise ValueError('Annotated PDF differs from its report')
     doc=fitz.open(annotated)
-    parts=['<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Waypoint-OPD · 原页阅读</title>',
+    parts=['<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+display_title+' · 原页阅读</title>',
     '<meta name="source-pdf-sha256" content="'+digest+'">', '''<style>
 *{box-sizing:border-box}body{display:flex;flex-direction:column;height:100dvh;margin:0;background:#e6e8e8;color:#25343e;font:15px/1.5 "Noto Serif SC","Songti SC",serif}header{padding:10px 14px;background:#fff;border-bottom:1px solid #d1d6d8}header b{font-size:16px}nav{display:flex;gap:7px;align-items:center;margin-top:8px;flex-wrap:wrap}button,select{font:inherit;color:inherit;border:1px solid #ccd3d5;background:#fff;padding:5px 10px;border-radius:3px}button{cursor:pointer}a{color:#20526b}#viewport{flex:1;min-height:0;overflow:auto;padding:12px;--zoom:1;scroll-behavior:smooth}main{max-width:1100px;margin:auto}.sheet{position:relative;width:calc(100% * var(--zoom));margin:0 0 16px;background:white;box-shadow:0 1px 6px #0002}.sheet img{display:block;width:100%;height:auto}.sheet svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}.sheet svg a{pointer-events:all}.source-anchor{position:absolute;width:1px;height:1px;scroll-margin:90px 30px}.source-anchor:target{outline:2px solid #b58b28}small{color:#67747a}#zoom-label{min-width:40px;text-align:center}@media(max-width:500px){#viewport{padding:5px}header{padding:8px 10px}nav{gap:5px}button,select{padding:4px 7px}}
-</style><body><header><b>Waypoint-OPD</b> <small>原页与批注一起读</small><nav><select id="pages" aria-label="跳转页面">''']
+</style><body><header><b>'''+display_title+'''</b> <small>原页与批注一起读</small><nav><select id="pages" aria-label="跳转页面">''']
     by_output={p['output_page']:p['source_page'] for p in report['pages']}
     for i in range(len(doc)):
         label='阅读地图' if i+1 not in by_output else '原文第 '+str(by_output[i+1])+' 页'

@@ -9,7 +9,7 @@ names = ('SKILL.md','README.md','LICENSE','THIRD_PARTY_NOTICES.md','requirements
 files = [root/n for n in names]
 files += [p for folder in folders for p in (root/folder).rglob('*')
           if p.is_file() and '__pycache__' not in p.parts and p.suffix != '.pyc']
-files += [root/'review/STATUS.md',root/'review/REQUEST.md',root/'review/ACADEMIC-REGRESSION.md',root/'review/SHOWCASE-2026-10-18.md']
+files += [root/'review/STATUS.md',root/'review/REQUEST.md',root/'review/ACADEMIC-REGRESSION.md',root/'review/SHOWCASE-2026-10-18.md',root/'review/ATTENTION-2026-10-18.md']
 destination = root/'local/dist/source-annotations-0.1.0-preview.zip'
 destination.parent.mkdir(parents=True,exist_ok=True)
 with zipfile.ZipFile(destination,'w',zipfile.ZIP_DEFLATED) as archive:

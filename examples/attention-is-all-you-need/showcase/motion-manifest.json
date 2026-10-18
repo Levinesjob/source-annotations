@@ -1,0 +1,204 @@
+{
+  "kind": "Animated explanation, not a screen recording or live generation",
+  "inputs": {
+    "local\\attention-is-all-you-need-v1.pdf": "0a9bff1be3575cf9fe26a4a3d3a9175bc791ecec90de8b9deba4cff75d2b9476",
+    "local\\attention-preview\\attention-is-all-you-need-v1-annotated.pdf": "4cbcacab7fedc4de5075458e3b9b0a383280397e9da6eddc001b54b6a4203b30",
+    "examples\\attention-is-all-you-need\\annotations.json": "8d776737dafd201ba4111a078c3868e35fa461b20f2e1eb4c031765d6f094a94",
+    "local\\attention-preview\\attention-is-all-you-need-v1-annotated.report.json": "ce0794d7e888574903f8b51bcd82ab55dc502122daf0188a44a49e2e8fa6d695"
+  },
+  "paper": "https://arxiv.org/abs/1706.03762v1",
+  "paper_license": "arXiv non-exclusive distribution license",
+  "background_target": {
+    "label": "Seq2seq前序：Sequence to Sequence Learning with Neural Networks",
+    "short_label": "Seq2seq前序（2014）",
+    "url": "https://arxiv.org/abs/1409.3215"
+  },
+  "background_note": "Chinese note about the linked prerequisite source; not a website screenshot.",
+  "navigation": {
+    "annotation": "t30",
+    "original_page": 10,
+    "physical_page": 11,
+    "point_pt": [
+      240.0686492919922,
+      228.57717895507812
+    ]
+  },
+  "outputs": {
+    "motion-concept.gif": {
+      "size": [
+        1200,
+        740
+      ],
+      "frames": 13,
+      "duration_ms": 11860,
+      "bytes": 482384,
+      "sha256": "3db84664fae98156ac53bc3ad309ec334dd49439dfcd598f7ebc2a6bd893738e",
+      "crops": [
+        {
+          "physical_page": 1,
+          "rect_pt": [
+            208.0,
+            97.0,
+            403.0,
+            120.0
+          ],
+          "width_px": 1072
+        }
+      ],
+      "poster": {
+        "file": "motion-concept-still.png",
+        "sha256": "99edc1d59f55f05f5c0fbbd0358c87931fbdb31bbdbde92278e96ef71e7f759a"
+      }
+    },
+    "motion-concept-mobile.gif": {
+      "size": [
+        780,
+        1000
+      ],
+      "frames": 13,
+      "duration_ms": 11860,
+      "bytes": 502426,
+      "sha256": "a4a97e4ca6d3963d50941745a6cd850ff5b891559584c01d63a0217e6da593d6",
+      "crops": [
+        {
+          "physical_page": 1,
+          "rect_pt": [
+            208.0,
+            97.0,
+            403.0,
+            120.0
+          ],
+          "width_px": 652
+        }
+      ],
+      "poster": {
+        "file": "motion-concept-mobile-still.png",
+        "sha256": "793009012d5545b72ca80738c4fe7110311e3849bd86bce97c276aaa5ff03ba6"
+      }
+    },
+    "motion-background.gif": {
+      "size": [
+        1200,
+        740
+      ],
+      "frames": 26,
+      "duration_ms": 13080,
+      "bytes": 474965,
+      "sha256": "b33b9fb12d1250f7bbe26463a47aba79fb03f6481ece1ea292290c74bafd43f9",
+      "crops": [
+        {
+          "physical_page": 1,
+          "rect_pt": [
+            105.52999877929688,
+            285.0,
+            221.57949829101562,
+            323.9744873046875
+          ],
+          "width_px": 476
+        }
+      ],
+      "poster": {
+        "file": "motion-background-still.png",
+        "sha256": "70fde2c5eb906bb28e66978a85cf1079813d0f83106e89bc0bf123a9a95b3b16"
+      }
+    },
+    "motion-background-mobile.gif": {
+      "size": [
+        780,
+        1000
+      ],
+      "frames": 26,
+      "duration_ms": 13080,
+      "bytes": 628375,
+      "sha256": "eee3636ded8fb1d988e643aad735e8433da6494401ebb764c7786c364daaaf82",
+      "crops": [
+        {
+          "physical_page": 1,
+          "rect_pt": [
+            105.52999877929688,
+            285.0,
+            221.57949829101562,
+            323.9744873046875
+          ],
+          "width_px": 652
+        }
+      ],
+      "poster": {
+        "file": "motion-background-mobile-still.png",
+        "sha256": "8b1e7dfdb2e32d466f1e0d2606cee524d534ebbcb70470fc854ae99da4c3432e"
+      }
+    },
+    "motion-evidence.gif": {
+      "size": [
+        1200,
+        740
+      ],
+      "frames": 26,
+      "duration_ms": 13080,
+      "bytes": 495784,
+      "sha256": "522c00ad20ec044a732a2426fb9bf6124850dc65becf2af9929eeb8eeb9e6c88",
+      "crops": [
+        {
+          "physical_page": 1,
+          "rect_pt": [
+            105.0,
+            532.0,
+            319.0,
+            579.0
+          ],
+          "width_px": 797
+        },
+        {
+          "physical_page": 11,
+          "rect_pt": [
+            239.0686492919922,
+            227.57717895507812,
+            506.6082458496094,
+            239.4597625732422
+          ],
+          "width_px": 1072
+        }
+      ],
+      "poster": {
+        "file": "motion-evidence-still.png",
+        "sha256": "5fd7cadb75970e344ac904303e52d14b77b5b735064b89e96d2347fb6810f768"
+      }
+    },
+    "motion-evidence-mobile.gif": {
+      "size": [
+        780,
+        1000
+      ],
+      "frames": 26,
+      "duration_ms": 13080,
+      "bytes": 465910,
+      "sha256": "3f524b8ce73b1be6c6ff2bff97f28ef352001e8b2e592d378d554ff7bbcaad4a",
+      "crops": [
+        {
+          "physical_page": 1,
+          "rect_pt": [
+            105.0,
+            532.0,
+            319.0,
+            579.0
+          ],
+          "width_px": 652
+        },
+        {
+          "physical_page": 11,
+          "rect_pt": [
+            239.0686492919922,
+            227.57717895507812,
+            506.6082458496094,
+            239.4597625732422
+          ],
+          "width_px": 652
+        }
+      ],
+      "poster": {
+        "file": "motion-evidence-mobile-still.png",
+        "sha256": "2824c0bee5fdfc9f9a4d26a914a316906ea1ca0dc038ba888234e3bf042473ff"
+      }
+    }
+  }
+}

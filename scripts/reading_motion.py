@@ -4,6 +4,7 @@ python scripts/reading_motion.py
 Requires requirements.txt + requirements-showcase.txt. No model or video service.
 These are animated explanations, not screen recordings or live generation demos.
 """
+import argparse
 import hashlib
 import io
 import json
@@ -121,12 +122,13 @@ def concept(data, original, doc, mobile, log):
     states = []
     labels = ["论文标题", "中文主线", "核心观点"]
     for step in range(3):
-        im, top = base(mobile, "01", "长标题，展开为阅读主线", step, labels)
+        profile=data.get('showcase',{})
+        im, top = base(mobile, "01", profile.get('heading',"长标题，展开为阅读主线"), step, labels)
         w = im.width
         size = 34 if mobile else 29
         if step == 0:
             write(im, (64, top), "从一篇真实论文开始", size, BLUE)
-            clip = paper_crop(original, 0, [105, 77, 510, 121], w-128, log)
+            clip = paper_crop(original, 0, profile.get('title_clip',[105, 77, 510, 121]), w-128, log)
             paste(im, clip, (64, top+80))
             write(im, (64, top+clip.height+133), "标题给出研究对象；导览进一步说明它想解决什么问题。",
                   size, max_width=w-128)
@@ -146,6 +148,7 @@ def concept(data, original, doc, mobile, log):
 def background(data, original, doc, mobile, log):
     uri = data["background"]["links"][0]["url"]
     link = next(l for l in doc[0].get_links() if l.get("uri") == uri)
+    profile=data.get('showcase',{}).get('background',{})
     labels = ["遇到概念", "导览入口", "打开资料"]
     states = []
     for step in range(3):
@@ -160,43 +163,54 @@ def background(data, original, doc, mobile, log):
                   max_width=w-128)
         elif step == 1:
             write(im, (64, top), "导览中的三个真实链接", size, BLUE)
-            rect = fitz.Rect(105, 276.35, 316, 314)
+            if profile:
+                boxes=[doc[0].search_for(item.get('short_label',item['label']))[0]
+                       for item in data['background']['links']]
+                rect=fitz.Rect(boxes[0])
+                for box in boxes[1:]:rect |= box
+                rect=rect+(-2,-1,4,2)
+            else:
+                rect = fitz.Rect(105, 276.35, 316, 314)
             crop_width = w-128 if mobile else 740
+            crop_width = min(crop_width, round((280 if mobile else 160)*rect.width/rect.height))
             crop = paper_crop(doc, 0, rect, crop_width, log)
             paste(im, crop, (64, top+85))
             scale = crop_width / rect.width
             box = link["from"]
             point = (64+(box.x0+40-rect.x0)*scale, top+85+(box.y0+6-rect.y0)*scale)
-            write(im, (64, top+crop.height+123), "选择 Policy / RL 入门", size, BLUE,
+            write(im, (64, top+crop.height+123), profile.get('selection',"选择 Policy / RL 入门"), size, BLUE,
                   max_width=w-128)
         else:
             write(im, (64, top), "目标资料 · 内容摘记", size, BLUE)
-            end = write(im, (64, top+72), "Spinning Up / Policies", 40 if mobile else 38,
+            end = write(im, (64, top+72), profile.get('title',"Spinning Up / Policies"), 40 if mobile else 38,
                         max_width=w-128)
-            end = write(im, (64, end+20), "策略是一条规则：帮助智能体决定采取什么行动。", size,
+            end = write(im, (64, end+20), profile.get('description',"策略是一条规则：帮助智能体决定采取什么行动。"), size,
                         max_width=w-128)
-            end = write(im, (64, end+24), "spinningup.openai.com\nrl_intro.html#policies", 27 if mobile else 25,
+            end = write(im, (64, end+24), profile.get('address',"spinningup.openai.com\nrl_intro.html#policies"), 27 if mobile else 25,
                         BLUE, max_width=w-128)
-            write(im, (64, end+28), "从原链接进入这一节，再回论文继续读。", size,
+            write(im, (64, end+28), profile.get('return_note',"从原链接进入这一节，再回论文继续读。"), size,
                   max_width=w-128)
         states.append(im)
     return states, ((im.width-100, im.height-170), point)
 
 
 def evidence(data, original, doc, mobile, log):
-    note = next(a for a in data["annotations"] if a["id"] == "a12")
-    report = json.loads((ROOT/"output/waypoint-opd-v1-annotated.report.json").read_text(encoding="utf-8"))
-    target = next(l for l in report["guide_links"] if l["label"] == "第4页 · 正确性限制")
+    profile=data.get('showcase',{}).get('evidence',{})
+    aid=profile.get('annotation','a12')
+    note = next(a for a in data["annotations"] if a["id"] == aid)
+    report = data['_motion_report']
+    label=next(t['label'] for step in data['reading_guide']['steps'] for t in step.get('targets',[]) if t.get('annotation')==aid)
+    target = next(l for l in report["guide_links"] if l["label"] == label)
     goto = next(l for l in doc[0].get_links() if l["kind"] == fitz.LINK_GOTO
                 and l["page"]+1 == target["output_page"] and abs(l["to"].y-target["point"][1]) < .02)
-    annotation = next(a for a in report["annotations"] if a["id"] == "a12")
+    annotation = next(a for a in report["annotations"] if a["id"] == aid)
     assert abs(annotation["source_boxes"][0][1]-goto["to"].y) < .02
     assert abs(annotation["source_boxes"][0][0]-goto["to"].x) < .02
     assert note["quote"] in " ".join(doc[goto["page"]].get_text().split())
     labels = ["导览判断", "点击入口", "原文依据"]
     states = []
     for step in range(3):
-        im, top = base(mobile, "03", "从一句判断，回到证据现场", step, labels)
+        im, top = base(mobile, "03", profile.get('heading',"从一句判断，回到证据现场"), step, labels)
         w = im.width
         size = 34 if mobile else 29
         if step == 0:
@@ -206,19 +220,26 @@ def evidence(data, original, doc, mobile, log):
             write(im, (64, end+40), "这句话不是阅读的终点。继续看作者在哪里写下了限制。", size,
                   max_width=w-128)
         elif step == 1:
-            write(im, (64, top), "PDF 内部入口 / 原论文第 4 页", size, BLUE)
-            rect = fitz.Rect(105, 522, 375, 570)
+            write(im, (64, top), f"PDF 内部入口 / 原论文第 {note['page']} 页", size, BLUE)
+            rect = fitz.Rect(profile.get('guide_clip',[105, 522, 375, 570]))
             crop_width = w-128
+            if profile:
+                crop_width=min(crop_width,round((260 if mobile else 175)*rect.width/rect.height))
             crop = paper_crop(doc, 0, rect, crop_width, log)
             paste(im, crop, (64, top+85))
             scale = crop_width/rect.width
             point = (64+(goto["from"].x0+50-rect.x0)*scale,
                      top+85+(goto["from"].y0+6-rect.y0)*scale)
-            write(im, (64, top+crop.height+100), "点击“正确性限制”，定位到对应原句。", size,
+            write(im, (64, top+crop.height+100), profile.get('click_text',"点击“正确性限制”，定位到对应原句。"), size,
                   max_width=w-128)
         else:
-            write(im, (64, top), "原论文第 4 页 / 作者的限制", size, BLUE)
-            crop = paper_crop(doc, goto["page"], [144.2, 595.5, 428, 610.8], w-128, log)
+            write(im, (64, top), f"原论文第 {note['page']} 页 / 作者的限制", size, BLUE)
+            if profile:
+                rect=fitz.Rect(annotation['source_boxes'][0])
+                for box in annotation['source_boxes'][1:]:rect |= fitz.Rect(box)
+                rect=rect+(-1,-1,1,1)
+            else:rect=fitz.Rect(144.2, 595.5, 428, 610.8)
+            crop = paper_crop(doc, goto["page"], rect, w-128, log)
             paste(im, crop, (64, top+80))
             end = write(im, (64, top+crop.height+119), "【作者主张】" + note["text"], size,
                         max_width=w-128)
@@ -229,23 +250,37 @@ def evidence(data, original, doc, mobile, log):
 
 
 def main():
-    data_path = ROOT/"examples/waypoint-opd/annotations.json"
-    source = ROOT/"local/waypoint-opd-v1.pdf"
-    annotated = ROOT/"output/waypoint-opd-v1-annotated.pdf"
+    global DEST, LOCAL
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--annotations',default='examples/waypoint-opd/annotations.json')
+    parser.add_argument('--source',default='local/waypoint-opd-v1.pdf')
+    parser.add_argument('--pdf',default='output/waypoint-opd-v1-annotated.pdf')
+    parser.add_argument('--output-dir',default='examples/waypoint-opd/showcase')
+    parser.add_argument('--check-dir',default='local/motion')
+    args=parser.parse_args()
+    data_path,source,annotated=[ROOT/p for p in (args.annotations,args.source,args.pdf)]
+    DEST,LOCAL=ROOT/args.output_dir,ROOT/args.check_dir
     report_path = annotated.with_suffix(".report.json")
     data = json.loads(data_path.read_text(encoding="utf-8"))
     report = json.loads(report_path.read_text(encoding="utf-8"))
+    data['_motion_report']=report
     assert sha(source) == data["paper"]["sha256"]
     assert sha(annotated) == report["output_sha256"]
     assert sha(data_path) == report["annotations_sha256"]
     before = {str(p.relative_to(ROOT)): sha(p) for p in (source, annotated, data_path, report_path)}
     DEST.mkdir(parents=True, exist_ok=True)
     LOCAL.mkdir(parents=True, exist_ok=True)
+    evidence_id=data.get('showcase',{}).get('evidence',{}).get('annotation','a12')
+    evidence_note=next(a for a in data['annotations'] if a['id']==evidence_id)
+    evidence_target=next(t for t in report['guide_links'] if t['source_page']==evidence_note['page']
+                         and any(s.get('annotation')==evidence_id and s['label']==t['label']
+                                 for step in data['reading_guide']['steps'] for s in step.get('targets',[])))
     manifest = {"kind": "Animated explanation, not a screen recording or live generation",
-                "inputs": before, "paper": data["paper"]["url"], "paper_license": "CC BY 4.0",
+                "inputs": before, "paper": data["paper"]["url"], "paper_license": data['paper'].get('license','see source'),
                 "background_target": data["background"]["links"][0],
-                "background_note": "Chinese paraphrase of Spinning Up Policies opening definition; not a website screenshot.",
-                "navigation": {"annotation": "a12", "original_page": 4, "physical_page": 5},
+                "background_note": "Chinese note about the linked prerequisite source; not a website screenshot.",
+                "navigation": {"annotation": evidence_id, "original_page": evidence_note['page'],
+                               "physical_page": evidence_target['output_page'], "point_pt": evidence_target['point']},
                 "outputs": {}}
     with fitz.open(source) as original, fitz.open(annotated) as doc:
         for name, builder in [("concept", concept), ("background", background), ("evidence", evidence)]:

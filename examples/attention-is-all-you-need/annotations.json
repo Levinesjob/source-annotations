@@ -1,0 +1,706 @@
+{
+  "schema_version": 1,
+  "paper": {
+    "title": "Attention Is All You Need",
+    "short_title": "Attention Is All You Need",
+    "authors": "Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Łukasz Kaiser, Illia Polosukhin",
+    "url": "https://arxiv.org/abs/1706.03762v1",
+    "pdf_url": "https://arxiv.org/pdf/1706.03762v1",
+    "identifier": "arXiv:1706.03762v1",
+    "license": "arXiv non-exclusive distribution license",
+    "license_url": "https://arxiv.org/licenses/nonexclusive-distrib/1.0/license.html",
+    "redistribution": "No blanket permission to redistribute the original paper established; local reading copy only.",
+    "sha256": "0a9bff1be3575cf9fe26a4a3d3a9175bc791ecec90de8b9deba4cff75d2b9476"
+  },
+  "reading_scope": "正文第1–10页通读；参考文献10–12页作条目核对，未逐篇精读；附录第13–15页图3–5及图注已读。",
+  "annotation_scope": "34条精选，覆盖正文全部2幅主图、4张表及3幅附录图；完整原文保留。",
+  "review_status": {
+    "author_review": "AI逐条对照原文的初稿，未获人类专业签核",
+    "independent_tool": "pending",
+    "real_phone": "pending"
+  },
+  "presentation": {
+    "try_original_width_pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      13,
+      14,
+      15
+    ]
+  },
+  "annotations": [
+    {
+      "id": "t01",
+      "page": 1,
+      "kind": "term",
+      "side": "left",
+      "quote": "sequence transduction",
+      "text": "sequence transduction：把一个序列转换成另一个序列；本文主要做机器翻译。",
+      "evidence": "解读",
+      "tag": "词义",
+      "nature": "explanation",
+      "reason": "辅助读者在原文中理解机制、证据或边界。"
+    },
+    {
+      "id": "t02",
+      "page": 1,
+      "kind": "key",
+      "side": "right",
+      "quote": "This inherently sequential nature precludes parallelization within training examples",
+      "text": "瓶颈是单个样本内部要按位置逐步算；不等于不同样本完全不能并行。",
+      "evidence": "主张",
+      "tag": "要点",
+      "nature": "author_claim",
+      "reason": "辅助读者在原文中理解机制、证据或边界。"
+    },
+    {
+      "id": "t03",
+      "page": 1,
+      "kind": "key",
+      "side": "right",
+      "quote": "We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.",
+      "text": "用注意力替代循环和卷积做序列交互；网络仍含前馈层、残差与归一化。",
+      "evidence": "主张",
+      "tag": "要点",
+      "nature": "author_claim",
+      "reason": "辅助读者在原文中理解机制、证据或边界。",
+      "limitation": "这是2017年的编码器-解码器模型；不等同于今天所有Transformer变体。"
+    },
+    {
+      "id": "t04",
+      "page": 2,
+      "kind": "sentence",
+      "side": "left",
+      "quote": "At each step the model is auto-regressive [10], consuming the previously generated symbols as additional input when generating the next.",
+      "text": "每一步都自回归：生成下一个符号时，把之前已生成的符号也作为输入。",
+      "evidence": "解读",
+      "tag": "译句",
+      "nature": "explanation",
+      "reason": "辅助读者在原文中理解机制、证据或边界。"
+    },
+    {
+      "id": "t05",
+      "page": 2,
+      "kind": "term",
+      "side": "left",
+      "quote": "Self-attention, sometimes called intra-attention",
+      "text": "Self-attention, sometimes called intra-attention：同一序列中各位置彼此取信息。",
+      "evidence": "解读",
+      "tag": "词义",
+      "nature": "explanation",
+      "reason": "辅助读者在原文中理解机制、证据或边界。"
+    },
+    {
+      "id": "t06",
+      "page": 2,
+      "kind": "note",
+      "side": "right",
+      "quote": "LayerNorm(x + Sublayer(x))",
+      "text": "先把子层输出加回输入，再做归一化；这是本文的Post-LN顺序。",
+      "evidence": "推导",
+      "tag": "说明",
+      "nature": "definition_or_relation",
+      "reason": "辅助读者在原文中理解机制、证据或边界。"
+    },
+    {
+      "id": "t07",
+      "page": 3,
+      "kind": "note",
+      "side": "right",
+      "quote": "Figure 1: The Transformer - model architecture.",
+      "text": "左边编码输入，右边逐步生成输出；右侧中间的注意力还读取左侧编码结果。不要把三种注意力混为一谈。",
+      "evidence": "解读",
+      "tag": "说明",
+      "nature": "explanation",
+      "reason": "辅助读者在原文中理解机制、证据或边界。"
+    },
+    {
+      "id": "t08",
+      "page": 3,
+      "kind": "key",
+      "side": "right",
+      "quote": "This masking, combined with fact that the output embeddings are offset by one position, ensures that the predictions for position i can depend only on the known outputs at positions less than i.",
+      "text": "遮住未来位置，并把目标输入右移一位，防止训练时偷看要预测的词。",
+      "evidence": "推导",
+      "tag": "要点",
+      "nature": "definition_or_relation",
+      "reason": "辅助读者在原文中理解机制、证据或边界。"
+    },
+    {
+      "id": "t09",
+      "page": 3,
+      "kind": "term",
+      "side": "left",
+      "quote": "a query and a set of key-value pairs",
+      "text": "a query and a set of key-value pairs：一次查询向量，及供匹配的键、供汇总的值；不是搜索引擎里的文字查询。",
+      "evidence": "解读",
+      "tag": "词义",
+      "nature": "explanation",
+      "reason": "辅助读者在原文中理解机制、证据或边界。"
+    },
+    {
+      "id": "t10",
+      "page": 3,
+      "kind": "formula",
+      "side": "left",
+      "quote": "Attention(Q, K, V ) = softmax(QKT √dk )V (1)",
+      "text": "先算相关分数，再变成权重，最后加权汇总信息。",
+      "evidence": "推导",
+      "tag": "公式",
+      "nature": "definition_or_relation",
+      "reason": "辅助读者在原文中理解机制、证据或边界。",
+      "symbols": "Q存查询；K存匹配特征；V存待汇总内容；dk是每个键的维数。",
+      "design": "Q乘K转置得到位置间分数，除以根号dk后沿键方向做softmax，再乘V。",
+      "example": "本文每头dk=64，缩放因子为1/8（第4页）；不是把V也除以8。"
+    },
+    {
+      "id": "t11",
+      "page": 4,
+      "kind": "note",
+      "side": "right",
+      "quote": "We suspect this to be caused by the dot products growing too large in magnitude to result in useful gradients after applying the softmax function.",
+      "text": "作者用分数过大、softmax梯度变弱解释缩放动机；这句话本身不是实验结论。",
+      "evidence": "主张",
+      "tag": "说明",
+      "nature": "author_claim",
+      "reason": "辅助读者在原文中理解机制、证据或边界。"
+    },
+    {
+      "id": "t12",
+      "page": 4,
+      "kind": "key",
+      "side": "right",
+      "quote": "Multi-head attention allows the model to jointly attend to information from different representation subspaces at different positions.",
+      "text": "多个头分别做不同投影和匹配；不是把同一张注意力表复制多份。",
+      "evidence": "主张",
+      "tag": "要点",
+      "nature": "author_claim",
+      "reason": "辅助读者在原文中理解机制、证据或边界。"
+    },
+    {
+      "id": "t13",
+      "page": 4,
+      "kind": "formula",
+      "side": "left",
+      "quote": "MultiHead(Q, K, V ) = Concat(head1, ..., headh) where headi = Attention(QW Q i , KW K i , V W V i )",
+      "text": "每个头先投影Q/K/V，再算注意力，最后拼接各头结果。",
+      "evidence": "推导",
+      "tag": "公式",
+      "nature": "definition_or_relation",
+      "reason": "辅助读者在原文中理解机制、证据或边界。",
+      "symbols": "h是头数；各W是各头单独学习的投影矩阵；Concat表示拼接。",
+      "design": "本文h=8、每头64维，拼接为512维；在较低维子空间并行算。",
+      "example": "图2右侧画了拼接后的线性层；此处忠实保留v1公式，不套入后续版公式写法。"
+    },
+    {
+      "id": "t14",
+      "page": 5,
+      "kind": "term",
+      "side": "left",
+      "quote": "Position-wise Feed-Forward Networks",
+      "text": "Position-wise Feed-Forward Networks：每个位置分别经过同一前馈网络，不在这一层混合不同位置。",
+      "evidence": "解读",
+      "tag": "词义",
+      "nature": "explanation",
+      "reason": "辅助读者在原文中理解机制、证据或边界。"
+    },
+    {
+      "id": "t15",
+      "page": 5,
+      "kind": "formula",
+      "side": "right",
+      "quote": "FFN(x) = max(0, xW1 + b1)W2 + b2",
+      "text": "先线性变换并ReLU，再线性变回模型维数。",
+      "evidence": "推导",
+      "tag": "公式",
+      "nature": "definition_or_relation",
+      "reason": "辅助读者在原文中理解机制、证据或边界。",
+      "symbols": "x是某位置的向量；W1/W2是两层权重，b1/b2是偏置。",
+      "design": "各位置共用同一组参数；不同网络层用不同参数。",
+      "example": "本文输入输出均512维；中间维数正文写2048，表3另有不一致（第9页）。"
+    },
+    {
+      "id": "t16",
+      "page": 5,
+      "kind": "key",
+      "side": "right",
+      "quote": "To this end, we add \"positional encodings\" to the input embeddings at the bottoms of the encoder and decoder stacks.",
+      "text": "把位置信息加进词向量，补上没有循环或卷积时缺失的顺序线索。",
+      "evidence": "推导",
+      "tag": "要点",
+      "nature": "definition_or_relation",
+      "reason": "辅助读者在原文中理解机制、证据或边界。"
+    },
+    {
+      "id": "t17",
+      "page": 5,
+      "kind": "formula",
+      "side": "left",
+      "quote": "PE(pos,2i) = sin(pos/100002i/dmodel) PE(pos,2i+1) = cos(pos/100002i/dmodel)",
+      "text": "不同维度使用不同频率的正弦、余弦。",
+      "evidence": "推导",
+      "tag": "公式",
+      "nature": "definition_or_relation",
+      "reason": "辅助读者在原文中理解机制、证据或边界。",
+      "symbols": "pos是位置；i是维度对编号；dmodel是模型宽度。",
+      "design": "偶数维用sin，奇数维用cos；编码与词向量同维，逐项相加。",
+      "example": "第5页说明波长从2π到10000×2π；可学习相对位置是作者的设计假设。"
+    },
+    {
+      "id": "t18",
+      "page": 6,
+      "kind": "note",
+      "side": "left",
+      "quote": "Table 1: Maximum path lengths, per-layer complexity and minimum number of sequential operations for different layer types.",
+      "text": "表1比较每层计算量、串行步骤和最长信息路径；O(1)指路径/串行层数，不是总计算量。",
+      "evidence": "推导",
+      "tag": "说明",
+      "nature": "definition_or_relation",
+      "reason": "辅助读者在原文中理解机制、证据或边界。"
+    },
+    {
+      "id": "t19",
+      "page": 6,
+      "kind": "key",
+      "side": "right",
+      "quote": "self-attention layers are faster than recurrent layers when the sequence length n is smaller than the representation dimensionality d",
+      "text": "作者的复杂度比较带有n小于d的条件；完整注意力仍有n平方项。",
+      "evidence": "推导",
+      "tag": "要点",
+      "nature": "definition_or_relation",
+      "reason": "辅助读者在原文中理解机制、证据或边界。",
+      "limitation": "不能由此推出任意长序列都更省算力；表1也不是端到端延迟实测。"
+    },
+    {
+      "id": "t20",
+      "page": 7,
+      "kind": "note",
+      "side": "left",
+      "quote": "We trained the base models for a total of 100,000 steps or 12 hours.",
+      "text": "12小时对应base；big是30万步、3.5天。两者均为8张P100上的本文训练设置。",
+      "evidence": "实测",
+      "tag": "说明",
+      "nature": "experiment",
+      "reason": "辅助读者在原文中理解机制、证据或边界。"
+    },
+    {
+      "id": "t21",
+      "page": 7,
+      "kind": "formula",
+      "side": "right",
+      "quote": "lrate = d−0.5 model · min(step_num−0.5, step_num · warmup_steps−1.5) (3)",
+      "text": "先线性预热，再按步数的平方根倒数降低学习率。",
+      "evidence": "推导",
+      "tag": "公式",
+      "nature": "definition_or_relation",
+      "reason": "辅助读者在原文中理解机制、证据或边界。",
+      "symbols": "dmodel是模型宽度；step_num是当前步数；warmup_steps是预热步数。",
+      "design": "取两项较小值，使前段上升、后段下降；dmodel另控制整体尺度。",
+      "example": "本文warmup_steps=4000；这不是对所有模型都最优的通用参数。"
+    },
+    {
+      "id": "t22",
+      "page": 7,
+      "kind": "sentence",
+      "side": "left",
+      "quote": "This hurts perplexity, as the model learns to be more unsure, but improves accuracy and BLEU score.",
+      "text": "这会使困惑度变差，因为模型学得没那么确定；但会改善准确率和BLEU分数。",
+      "evidence": "解读",
+      "tag": "译句",
+      "nature": "explanation",
+      "reason": "辅助读者在原文中理解机制、证据或边界。"
+    },
+    {
+      "id": "t23",
+      "page": 8,
+      "kind": "key",
+      "side": "right",
+      "quote": "Transformer (base model) 27.3 38.1 3.3 · 1018 Transformer (big) 28.4 41.0 2.3 · 1019",
+      "text": "表2：big英德28.4、英法41.0 BLEU；base分别27.3、38.1。",
+      "evidence": "实测",
+      "tag": "要点",
+      "nature": "experiment",
+      "reason": "辅助读者在原文中理解机制、证据或边界。",
+      "limitation": "固定v1、WMT14测试集；英法41.0优于所列旧单模型，却低于表中41.29的集成结果。"
+    },
+    {
+      "id": "t24",
+      "page": 8,
+      "kind": "term",
+      "side": "left",
+      "quote": "checkpoint averaging",
+      "text": "checkpoint averaging：平均多个训练检查点的参数，得到一个模型；不是多个模型分别预测再投票。",
+      "evidence": "解读",
+      "tag": "词义",
+      "nature": "explanation",
+      "reason": "辅助读者在原文中理解机制、证据或边界。"
+    },
+    {
+      "id": "t25",
+      "page": 8,
+      "kind": "key",
+      "side": "right",
+      "quote": "While single-head attention is 0.9 BLEU worse than the best setting, quality also drops off with too many heads.",
+      "text": "单头比最优设置低0.9 BLEU；头也不是越多越好。",
+      "evidence": "实测",
+      "tag": "要点",
+      "nature": "experiment",
+      "reason": "辅助读者在原文中理解机制、证据或边界。",
+      "limitation": "表3的英德开发集消融，计算量保持可比且不做检查点平均；不是表2测试集增益。"
+    },
+    {
+      "id": "t26",
+      "page": 8,
+      "kind": "note",
+      "side": "left",
+      "quote": "We estimate the number of floating point operations used to train a model",
+      "text": "训练FLOPs按时间、GPU数量和单卡持续算力估算；不是把所有模型放到同一设备重测。",
+      "evidence": "主张",
+      "tag": "说明",
+      "nature": "author_claim",
+      "reason": "辅助读者在原文中理解机制、证据或边界。"
+    },
+    {
+      "id": "t27",
+      "page": 9,
+      "kind": "note",
+      "side": "right",
+      "quote": "All metrics are on the English-to-German translation development set, newstest2013.",
+      "text": "表3是开发集消融；v1的base中间维数表写1024、正文3.3写2048，复现前应核对配置。",
+      "evidence": "解读",
+      "tag": "说明",
+      "nature": "explanation",
+      "reason": "辅助读者在原文中理解机制、证据或边界。"
+    },
+    {
+      "id": "t28",
+      "page": 9,
+      "kind": "key",
+      "side": "left",
+      "quote": "Transformer (4 layers) semi-supervised 92.7",
+      "text": "额外的句法分析任务：半监督92.7 F1；只用WSJ训练为91.3。",
+      "evidence": "实测",
+      "tag": "要点",
+      "nature": "experiment",
+      "reason": "辅助读者在原文中理解机制、证据或边界。",
+      "limitation": "仍低于表中生成式RNNG的93.3；训练数据条件不同，不能混排成无条件第一。"
+    },
+    {
+      "id": "t29",
+      "page": 9,
+      "kind": "term",
+      "side": "right",
+      "quote": "English constituency parsing",
+      "text": "English constituency parsing：把句子分析为成分语法树；表4使用F1，不是翻译BLEU。",
+      "evidence": "解读",
+      "tag": "词义",
+      "nature": "explanation",
+      "reason": "辅助读者在原文中理解机制、证据或边界。"
+    },
+    {
+      "id": "t30",
+      "page": 10,
+      "kind": "key",
+      "side": "right",
+      "quote": "Making generation less sequential is another research goals of ours.",
+      "text": "作者仍把减少生成的串行性列为后续目标：训练更并行，不等于翻译生成不用逐词进行。",
+      "evidence": "主张",
+      "tag": "要点",
+      "nature": "author_claim",
+      "reason": "辅助读者在原文中理解机制、证据或边界。"
+    },
+    {
+      "id": "t31",
+      "page": 10,
+      "kind": "key",
+      "side": "left",
+      "quote": "We plan to extend the Transformer to problems involving input and output modalities other than text",
+      "text": "图像、音频和视频在这里是后续计划；本文的实测范围是翻译和英文句法分析。",
+      "evidence": "主张",
+      "tag": "要点",
+      "nature": "author_claim",
+      "reason": "辅助读者在原文中理解机制、证据或边界。"
+    },
+    {
+      "id": "t32",
+      "page": 13,
+      "kind": "note",
+      "side": "right",
+      "quote": "An example of the attention mechanism following long-distance dependencies in the encoder self-attention in layer 5 of 6.",
+      "text": "图3只展示making这个词的部分注意力头，用来观察远距离联系；不是所有词的完整注意力图。",
+      "evidence": "解读",
+      "tag": "说明",
+      "nature": "explanation",
+      "reason": "辅助读者在原文中理解机制、证据或边界。"
+    },
+    {
+      "id": "t33",
+      "page": 14,
+      "kind": "term",
+      "side": "left",
+      "quote": "anaphora resolution",
+      "text": "anaphora resolution：判断代词指向谁；图4观察its与上下文的联系，作者用了apparently来限定判断。",
+      "evidence": "解读",
+      "tag": "词义",
+      "nature": "explanation",
+      "reason": "辅助读者在原文中理解机制、证据或边界。"
+    },
+    {
+      "id": "t34",
+      "page": 15,
+      "kind": "note",
+      "side": "right",
+      "quote": "The heads clearly learned to perform different tasks.",
+      "text": "图5展示不同头的关注差异。这类可视化不等于证明每个头都固定承担某个语法功能。",
+      "evidence": "主张",
+      "tag": "说明",
+      "nature": "author_claim",
+      "reason": "辅助读者在原文中理解机制、证据或边界。"
+    }
+  ],
+  "core_findings": [
+    {
+      "title": "用注意力取代循环和卷积",
+      "annotation": "t03"
+    },
+    {
+      "title": "英德与英法翻译结果及比较范围",
+      "annotation": "t23"
+    },
+    {
+      "title": "多头消融：并非头越多越好",
+      "annotation": "t25"
+    },
+    {
+      "title": "迁移到句法分析但未超过所有基线",
+      "annotation": "t28"
+    }
+  ],
+  "coverage": {
+    "main_source_pages": 10,
+    "domains": {
+      "英德翻译": [
+        "t23",
+        "t25"
+      ],
+      "英法翻译": [
+        "t23"
+      ],
+      "英文句法分析": [
+        "t28"
+      ]
+    },
+    "main_visuals": {
+      "图1": [
+        "t07"
+      ],
+      "图2": [
+        "t11",
+        "t12",
+        "t13"
+      ],
+      "表1": [
+        "t18",
+        "t19"
+      ],
+      "表2": [
+        "t23"
+      ],
+      "表3": [
+        "t27"
+      ],
+      "表4": [
+        "t28",
+        "t29"
+      ]
+    },
+    "appendix_visuals": {
+      "图3": [
+        "t32"
+      ],
+      "图4": [
+        "t33"
+      ],
+      "图5": [
+        "t34"
+      ]
+    }
+  },
+  "reading_guide": {
+    "target_minutes": 45,
+    "status": "budget_not_measured",
+    "headline": "用注意力取代循环，让序列模型更便于并行训练",
+    "problem": "循环模型按位置逐步计算，限制了单个序列内部的并行训练。",
+    "plain_method": "各位置用注意力交换信息，再用多头、位置编码和前馈层组成编码器与解码器。",
+    "core_view": "Transformer用注意力替代循环和卷积，缩短位置之间的信息路径。论文在翻译和句法分析中验证效果；训练更并行，但生成仍是自回归，注意力也并非恒定计算量。",
+    "prerequisites": [
+      "序列到序列：把一句话译为另一句话；词向量表示词，softmax把分数变成概率。",
+      "Encoder / Decoder：前者编码输入，后者根据输入与已生成内容继续预测；注意力决定从哪里取信息。"
+    ],
+    "goal": "能解释Q/K/V与多头怎么工作、为何训练更并行，以及结果和复杂度的边界。",
+    "audience": "适合知道向量、矩阵乘法与基本神经网络的读者；逐式推导和代码复现另需时间。",
+    "steps": [
+      {
+        "title": "问题：循环的串行步骤限制训练并行",
+        "minutes": 5,
+        "read": "从单个样本内部的串行依赖理解研究动机。",
+        "pages": [
+          1,
+          2
+        ],
+        "targets": [
+          {
+            "annotation": "t02",
+            "label": "第1页 · 串行瓶颈"
+          }
+        ]
+      },
+      {
+        "title": "结构：编码输入，再用解码器逐步生成",
+        "minutes": 10,
+        "read": "图1辨认编码器、自注意力、跨端注意力与前馈层。",
+        "pages": [
+          2,
+          3
+        ],
+        "targets": [
+          {
+            "annotation": "t07",
+            "label": "第3页 · 图1结构"
+          },
+          {
+            "annotation": "t08",
+            "label": "第3页 · 因果遮罩"
+          }
+        ]
+      },
+      {
+        "title": "计算：Q/K/V匹配、多头投影与位置编码",
+        "minutes": 15,
+        "read": "围绕三处公式理解数据如何流动。",
+        "pages": [
+          3,
+          4,
+          5
+        ],
+        "targets": [
+          {
+            "annotation": "t10",
+            "label": "第3页 · 注意力公式"
+          },
+          {
+            "annotation": "t13",
+            "label": "第4页 · 多头公式"
+          },
+          {
+            "annotation": "t17",
+            "label": "第5页 · 位置编码"
+          }
+        ]
+      },
+      {
+        "title": "证据：看翻译测试、消融和句法分析",
+        "minutes": 10,
+        "read": "区分测试集与开发集、BLEU与F1、单模型与集成。",
+        "pages": [
+          8,
+          9
+        ],
+        "targets": [
+          {
+            "annotation": "t23",
+            "label": "第8页 · 表2翻译"
+          },
+          {
+            "annotation": "t25",
+            "label": "第8页 · 多头消融"
+          },
+          {
+            "annotation": "t28",
+            "label": "第9页 · 表4句法"
+          }
+        ]
+      },
+      {
+        "title": "边界：并行训练不等于并行生成",
+        "minutes": 5,
+        "read": "注意n平方复杂度和论文的实际任务范围。",
+        "pages": [
+          6,
+          10
+        ],
+        "targets": [
+          {
+            "annotation": "t19",
+            "label": "第6页 · 复杂度条件"
+          },
+          {
+            "annotation": "t30",
+            "label": "第10页 · 生成边界"
+          }
+        ]
+      }
+    ],
+    "defer": "参考文献逐篇阅读、训练复现及附录逐头可视化可按需要补读。",
+    "checkpoint": "合上导览，用自己的话说明机制、证据和限制；时间预算不代表已经读懂。"
+  },
+  "background": {
+    "paragraphs": [
+      "本文讨论机器翻译：输入一串词，模型逐步输出另一种语言的一串词。RNN常按位置依次计算，Transformer改用注意力进行位置间的信息交互。",
+      "Attention是按查询与键的匹配给值加权；Self-attention的Q/K/V来自同一序列，跨端注意力则从输入编码结果取信息。"
+    ],
+    "links": [
+      {
+        "label": "Seq2seq前序：Sequence to Sequence Learning with Neural Networks",
+        "short_label": "Seq2seq前序（2014）",
+        "url": "https://arxiv.org/abs/1409.3215"
+      },
+      {
+        "label": "注意力前序：Neural Machine Translation by Jointly Learning to Align and Translate",
+        "short_label": "注意力前序（Bahdanau等）",
+        "url": "https://arxiv.org/abs/1409.0473"
+      },
+      {
+        "label": "Harvard NLP：The Annotated Transformer，实现与公式讲解",
+        "short_label": "实现讲解：Harvard NLP",
+        "url": "https://nlp.seas.harvard.edu/annotated-transformer/"
+      }
+    ]
+  },
+  "showcase": {
+    "heading": "论文标题，展开为阅读主线",
+    "title_clip": [
+      208,
+      97,
+      403,
+      120
+    ],
+    "background": {
+      "selection": "选择 Seq2seq 前序资料",
+      "title": "Sequence to Sequence Learning",
+      "description": "先把输入句子编码，再逐步生成输出句子；这是理解本文改进前的序列模型起点。",
+      "address": "arxiv.org/abs/1409.3215",
+      "return_note": "打开前序论文，补背景后回到本文。"
+    },
+    "evidence": {
+      "annotation": "t30",
+      "heading": "从导览观点，回到原文",
+      "category": "作者主张",
+      "guide_clip": [
+        105,
+        532,
+        319,
+        579
+      ],
+      "click_text": "点击“生成边界”，定位到作者原句。"
+    }
+  }
+}
