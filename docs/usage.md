@@ -2,7 +2,7 @@
 
 ## 查看现成样例
 
-[标注PDF](../output/waypoint-opd-v1-annotated.pdf)、[只加导览PDF](../output/waypoint-opd-v1-reading-brief.pdf)、[手机HTML](../output/waypoint-opd-mobile.html)来自同一固定Waypoint-OPD v1。手机HTML与标注PDF放同一个目录，下载后在浏览器打开；它内嵌真实PDF页面，不需要后台服务。GitHub不执行HTML。不是重新流式排版，窄屏需要放大。
+[标注PDF](../output/waypoint-opd-v1-annotated.pdf)、[只加导览PDF](../output/waypoint-opd-v1-reading-brief.pdf)、[手机HTML](../output/waypoint-opd-mobile.html)来自同一固定Waypoint-OPD v1。手机HTML内嵌真实PDF页面，可单独下载后在浏览器离线阅读；使用“打开PDF”按钮时，需将标注PDF按原文件名放同一个目录。不需要后台服务。GitHub不执行HTML。不是重新流式排版，窄屏需要放大。
 
 ## 本地生成
 
@@ -37,7 +37,7 @@ macOS/Linux将解释器换为`.venv/bin/python`，其他参数相同；**命令�
 
 把**完整目录**复制到工具的技能目录，不能只复制SKILL.md。需要具备文件读写、Python执行及依赖安装能力的智能体；格式可发现不等于生成已经跨工具实测。
 
-- Codex：本机沿用`~/.codex/skills/source-annotations/`，调用`$source-annotations`。
+- Codex：按[当前官方目录](https://learn.chatgpt.com/docs/build-skills#where-codex-loads-local-skills)，用户级`~/.agents/skills/source-annotations/`，项目级`.agents/skills/source-annotations/`，调用`$source-annotations`。本机历史`~/.codex/skills/`安装记录仍保留，不作为所有版本的通用推荐。
 - Cursor：项目级`.cursor/skills/source-annotations/`，或用户级`~/.agents/skills/source-annotations/`；以[官方发现规则](https://cursor.com/help/customization/skills)为准。
 - Claude Code：个人级`~/.claude/skills/source-annotations/`，以[官方技能说明](https://code.claude.com/docs/en/skills)为准。
 

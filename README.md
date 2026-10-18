@@ -2,105 +2,135 @@
 
 **Read the paper, understand it in place.**
 
-### 原文旁的 AI 学术精读助手
+### 帮助读者亲自理解原论文
 
-把**难词、长句、公式和关键证据**的解释放回原论文，帮助有一定领域基础的研究人员和工程师保持阅读上下文。
+一篇摘要可以帮助我们判断论文是否值得读，却很难交代完整的方法细节、实验条件和结论边界。AI 能很快整理重点，但如果始终只看整理后的答案，理解也容易停留在答案里。真正弄清楚作者做了什么、为什么这样做，以及证据能支持到哪一步，还是要回到原文。
 
-**原文现场理解 · 观点追溯证据 · 可复现 PDF**
+**Source Annotations 想做的，是让回到原文这件事更轻松。** 先用一页中文导览理清研究问题、前置知识与阅读路线，再直接跳到值得细读的原句、公式和图表；读的过程中，必要的术语、长句和机制解释就放在对应位置旁边，尽量减少查词、切换窗口和反复找出处的打断。
 
-[查看标注 PDF](https://github.com/Levinesjob/source-annotations/raw/refs/heads/main/output/waypoint-opd-v1-annotated.pdf) · [下载试用版](https://github.com/Levinesjob/source-annotations/releases/tag/v0.1.0-preview.1) · [快速开始](#快速开始) · [Skill 说明](SKILL.md)
+它不替代你的阅读和判断，而是帮你把注意力留在论文上。
 
-<a href="examples/waypoint-opd/showcase/hero.png"><picture>
-  <source media="(max-width: 600px)" srcset="examples/waypoint-opd/showcase/hero-mobile.png">
-  <img src="examples/waypoint-opd/showcase/hero.png" alt="真实论文第1页局部：原文段落保留在中间，完整术语、长句解释和结论限制位于两侧。手机显示原句与同页旁注的分区放大图。" width="1440">
-</picture></a>
+**[先看阅读导览 PDF](output/waypoint-opd-v1-reading-brief.pdf)** · **[看带旁注的 PDF](output/waypoint-opd-v1-annotated.pdf)** · [快速开始](#快速开始) · [完整使用说明](docs/usage.md)
 
-*Waypoint-OPD v1 的真实 PDF 裁图，中文解释与标记由本项目添加。当前为公开预览版。*
+## 先有方向，再读原文
 
-## 看看阅读时有什么不同
+导览不是把 Abstract 再翻译一遍，而是一张可以点击的**阅读地图**：
 
-读到陌生术语时，不必先整理一份脱离正文的词表；遇到复杂机制时，可以在对应段落旁看解释；看到结论时，能继续回到作者写下的证据和限制。
+- **读之前**，用简短的背景解释补上理解这篇论文所需的前提，指出它究竟在解决什么问题。
+- **开始读**，围绕问题、方法、机制、证据和边界安排阅读顺序，告诉你哪些地方值得花时间。
+- **读到关键处**，点击入口回到论文的具体原句、图表或公式；无法精确定位时明确使用整页入口，而不伪装成精确引用。
 
-保留英文正文并精选解释，区别于整篇翻译；保留证据入口，区别于独立摘要；加入语境解释和审查规则，超出单纯高亮与笔记管理。目标是帮助你继续阅读原论文。
-
-[![同版本、同坐标的原文与标注对比](examples/waypoint-opd/showcase/before-after.png)](examples/waypoint-opd/showcase/before-after.png)
-
-*上方原句：同页、同坐标、同缩放；右下：原有旁注单独放大，不改写原文。左下的问题用于说明阅读场景。手机请点击大图，或看下方放大示例与 PDF。*
-
-## 三个核心价值
-
-### 01 · 在原文现场理解
-
-**Understand in Context.** 完整术语保留本文义，长句解释保留条件与否定，公式说明符号、设计理由和原文例子。解释和原句一起呈现，让你接着读原论文。
-
-### 02 · 让观点回到证据
-
-**Trace Every Insight.** 阅读导览的入口跳到实际原句、公式或图表；四类标记区分**实测、推导、作者主张、导读解释**。观点与适用条件一起读，避免把作者判断、实验结果和 AI 解释混为一谈。
+不必从第一页硬读到最后一页，也不必被别人整理的摘要限制住理解。可以先顺着导览抓住主线，再根据自己的疑问回原文细读。
 
 <a href="examples/waypoint-opd/showcase/evidence-navigation.png"><picture>
   <source media="(max-width: 600px)" srcset="examples/waypoint-opd/showcase/evidence-mobile.png">
-  <img src="examples/waypoint-opd/showcase/evidence-navigation.png" alt="阅读导览的正确性限制入口，连接到原论文第4页方向一致不保证监督有益的高亮原句，并展示同页中文解释。静态组合，目标读取自真实PDF GoTo。" width="1440">
+  <img src="examples/waypoint-opd/showcase/evidence-navigation.png" alt="真实论文阅读导览中的一个观点链接到原论文中的对应证据和限制条件。" width="1440">
 </picture></a>
 
-*阅读导览 → 原文位置 → 支持证据 → 适用边界。上图是静态组合，跳转目的地直接读取成品 PDF；实际点击请打开 PDF。AI 辅助解释仍需内容审查。*
+*上图展示导览到原文证据的关系，是根据真实 PDF 跳转位置制作的静态组合图；在 [PDF](output/waypoint-opd-v1-reading-brief.pdf) 中可直接点击链接。示例建议用 45 分钟掌握研究主线，这是阅读预算，不是已经测出的提速结果。*
 
-### 03 · 可复现、可核查
+## 读的过程中，少一点打断
 
-**Reproducible by Design.** 固定原文版本和 SHA256，JSON 保存原句与解释，脚本将引文映射到 PDF 字符位置。版本不符、定位歧义或旁注放不下时会停止；原始输入保留。
+查一个术语、拆一段长句，或寻找公式解释，都可能打断阅读。我们尽量把这些辅助信息放回原文附近：
 
-[查看真实标注数据](examples/waypoint-opd/annotations.json) · [查看图片来源与跳转记录](examples/waypoint-opd/showcase/manifest.json) · [工程职责与两条 PDF 路径](docs/architecture.md)
+- **术语**：解释这个词在*本文*中是什么意思，而不是贴一整段词典释义。
+- **长句**：保留原句的条件、否定和比较对象，避免“翻译明白了，意思却变了”。
+- **公式**：说明符号代表什么、如何计算、为什么这样设计，和原论文的例子相互对照。
+- **结论与证据**：重点高亮对应原句，并区分实验结果、数学推导、作者观点和辅助解释。
 
-## 如何工作
+<a href="examples/waypoint-opd/showcase/hero.png"><picture>
+  <source media="(max-width: 600px)" srcset="examples/waypoint-opd/showcase/hero-mobile.png">
+  <img src="examples/waypoint-opd/showcase/hero.png" alt="真实论文英文正文与左右两侧的中文术语、长句和结论限制批注。" width="1440">
+</picture></a>
 
-**原始 PDF → AI 通读与分析 → 结构化批注 → PDF 绘制与机械检查 → 标注 PDF／同版手机页**
+[![相同论文位置的原文与批注前后对比](examples/waypoint-opd/showcase/before-after.png)](examples/waypoint-opd/showcase/before-after.png)
 
-智能体负责理解原文、选择重点和起草解释；确定性脚本负责匹配、坐标、排版及机械验证；人工或独立模型负责审查内容。**生成成功不代表解释正确**，本地脚本本身不调用模型。
+*图片取自同一版本的 Waypoint-OPD 论文和本项目生成的标注 PDF。主图保留原文与批注的空间关系；对比图上方使用同坐标原句，右下为同页旁注的单独放大。窄屏可点击大图；完整样例见 [标注 PDF](output/waypoint-opd-v1-annotated.pdf)。*
+
+## 从概括到证据，再到自己的理解
+
+导览负责指出“先读哪里”，正文批注负责减少理解障碍，原文链接负责让每个重要判断有出处。三者配合，目标不是把一篇论文压缩成几张卡片，而是让读者能够沿着**核心问题 → 作者方法 → 原文证据 → 适用限制**形成自己的认识。
+
+本项目使用结构化记录保存论文版本、原句、页码及解释；匹配不到原句、出现歧义或版面冲突时，生成脚本会停止，而不会猜一个位置。智能体负责通读、选重点和起草解释；确定性脚本负责原句匹配、坐标、绘制和机械检查，本身不调用模型。人工或独立模型负责内容审查；**机械检查通过不等于学术解释一定正确**。
+
+[查看样例标注数据](examples/waypoint-opd/annotations.json) · [查看工程原理](docs/architecture.md) · [查看实际验收](review/STATUS.md)
 
 ## 快速开始
 
-**先看效果，不必安装：** [标注 PDF](https://github.com/Levinesjob/source-annotations/raw/refs/heads/main/output/waypoint-opd-v1-annotated.pdf) · [只加导览的 PDF](https://github.com/Levinesjob/source-annotations/raw/refs/heads/main/output/waypoint-opd-v1-reading-brief.pdf) · [手机阅读文件](output/waypoint-opd-mobile.html)
+这里有三种使用方式，按你自己的需要选择。
 
-手机阅读文件需与标注 PDF 一起下载后打开，保持原页排版并提供缩放；GitHub 文件页不会运行它，也没有托管的在线阅读服务。
+### 方式一：直接体验，不需要安装
 
-### 在本地复现样例
+下载 [只有导览的 PDF](output/waypoint-opd-v1-reading-brief.pdf)，先看第一页，再点击其中的原文入口。请下载后用支持 PDF 内部链接的阅读器打开；也可以下载 [完整标注 PDF](output/waypoint-opd-v1-annotated.pdf)，直接阅读原文旁的解释。
 
-下载完整仓库，使用 **Python 3.11+**。以下在 Windows PowerShell 的仓库根目录执行；已实测环境为 Windows / Python 3.13.5 / PyMuPDF 1.26.5。
+如需手机浏览器入口，下载 [手机 HTML](output/waypoint-opd-mobile.html)，使用浏览器打开。页图已内嵌，可单独离线阅读；若要使用“打开 PDF”按钮，还需把完整标注 PDF 按原文件名放在同一个文件夹。GitHub 文件页不会运行 HTML，窄屏仍需要缩放。
+
+### 方式二：在电脑上复现这个示例
+
+**依赖与环境**
+
+| 项目 | 要求或说明 |
+| --- | --- |
+| Python | **3.11 或更高**；已验证 Windows / Python 3.13.5 |
+| PDF 依赖 | `PyMuPDF==1.26.5`，由 `requirements.txt` 安装 |
+| 中文字体 | 所需 Noto CJK 字体已包含在完整仓库的 `assets/` 内 |
+| Git | 用 `git clone` 下载时需要；也可以下载仓库 ZIP |
+| 网络 | 首次安装依赖、下载示例原论文时需要 |
+| AI / API Key | **复现现有数据不需要模型或 API Key**；新论文需要智能体阅读并生成记录，是否需 API Key 取决于所用工具 |
+
+仅重新制作 README 展示图时另需 `requirements-showcase.txt` 中的 Pillow；复现 PDF 不需要它。
+
+在 **Windows PowerShell** 中运行（macOS/Linux 的解释器路径见 [使用说明](docs/usage.md)，尚未在这些系统完整验收）：
 
 ```powershell
+git clone https://github.com/Levinesjob/source-annotations.git
+cd source-annotations
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe scripts/fetch_example.py
+
+# 在原论文前插入一页导览（此样例输出共21页）
+.\.venv\Scripts\python.exe scripts/prepend_guide.py local/waypoint-opd-v1.pdf examples/waypoint-opd/annotations.json local/reproduced-guide.pdf
+
+# 再生成带原文旁注的阅读版
 .\.venv\Scripts\python.exe scripts/annotate.py local/waypoint-opd-v1.pdf examples/waypoint-opd/annotations.json local/reproduced.pdf
 .\.venv\Scripts\python.exe scripts/verify.py local/waypoint-opd-v1.pdf examples/waypoint-opd/annotations.json local/reproduced.pdf
 ```
 
-这会用**已提供的批注数据复现排版**，不重新理解论文，也无需模型 API 密钥。首次安装和下载原文需要网络。手机输出、只加导览、测试及其他系统命令见[完整使用说明](docs/usage.md)；macOS/Linux 尚未实际验收。
+这些命令使用**仓库预置的示例标注数据**，重现排版与定位流程，不会自动重新阅读论文，也不会调用模型。完整手机输出、测试及更多命令见 [docs/usage.md](docs/usage.md)。
 
-### 用 Skill 读新论文
+### 方式三：作为 Skill 处理你自己的论文
 
-将完整目录放入支持 Agent Skills 的工具的技能目录。Codex 可调用：
+需要支持 Agent Skills、能够读取 PDF、写文件并运行本地 Python 的工具或智能体。安装时复制**完整仓库目录**，不是只放一个 `SKILL.md`：
 
-> 使用 $source-annotations 精读这份论文。先通读正文，再标注重点、完整术语、长句和公式；需要时添加阅读导览。保留原文件，核对关键证据和限制，报告尚未完成的审查。
+| 工具 | 技能目录示例 | 使用方式 |
+| --- | --- | --- |
+| Codex | 用户 `~/.agents/skills/source-annotations/`，或项目 `.agents/skills/source-annotations/` | 提示词中调用 `$source-annotations` |
+| Cursor | 项目 `.cursor/skills/source-annotations/`，或用户 `~/.agents/skills/source-annotations/` | 在对话中指定使用该 Skill |
+| Claude Code | `~/.claude/skills/source-annotations/` | 调用 `/source-annotations` |
 
-新论文需要智能体重新阅读和生成记录，不是把已有样例换一个 PDF。安装位置与工具能力边界见[使用说明](docs/usage.md#安装为-skill)；无文件执行能力的聊天工具可用[通用文字指令](docs/plain-prompt.md)，不保证 PDF 排版。
+可以这样提出需求：
 
-## 验证范围与限制
+> 使用 `$source-annotations` 处理这篇论文。请先通读并做一页阅读导览，说明研究问题、必要前置知识、值得先读的机制与实验，并在导览中给出真实的原文跳转。随后为难词、长句、关键公式和证据制作少量高质量的原文旁注。保留原论文，报告尚未核验的解释。
 
-| 已有结果 | 尚未由这些结果证明 |
-|---|---|
-| **23 项自动测试**；Waypoint-OPD 44条定位及几何检查 | 全部解释正确、完成全部逐条专业审查 |
-| 只加导览路径：单栏 Waypoint、双栏 CVPR ResNet、公式密集 Adam，共 **44 页原文回归** | 三篇都经过全文标注和独立学术审查；任意复杂 PDF 均兼容 |
-| 手机页从最终 PDF 渲染，共用定位和版本哈希 | 最新真实手机的全部链接、缩放与阅读体验已验收 |
-| Windows 本地生成及独立目录复现 | macOS/Linux、其他机器及所有 Agent 已执行通过 |
+新论文需要重新分析、生成对应的结构化标注记录；不能直接替换样例 PDF 路径就完成理解。Codex 目录按[当前官方说明](https://learn.chatgpt.com/docs/build-skills#where-codex-loads-local-skills)列出；本机此前的 `~/.codex/skills/` 安装记录仍保留，不把它作为所有版本的通用目录。Skill 的发现方式随工具版本而变化；安装和已验证能力见 [完整使用说明](docs/usage.md#安装为-skill)。
 
-两条 PDF 路径分开看：**只加导览**保留原研究页，并验证已有链接、书签等；**正文旁注**会重建页面，已有人工批注或表单会拒绝处理，不能沿用前者的结构保留结论。
+## 当前支持范围
 
-扫描、旋转、异常裁剪 PDF 不在自动处理范围。完整标签语义、XFA、作品集、富媒体未认证；两条路径的其他限制见[工程说明](docs/architecture.md#两条-pdf-路径)。**45分钟仅是阅读预算，没有量化提速结论。**
+这是 **v0.1.0 Preview**，已发布版本为 [v0.1.0-preview.1](https://github.com/Levinesjob/source-annotations/releases/tag/v0.1.0-preview.1)，提供一条可以复现的真实论文阅读流程。
 
-[实际验收记录](review/STATUS.md) · [三类论文回归](review/ACADEMIC-REGRESSION.md) · [集中待办](TODO.md)
+- 当前样例：**一页导览 + 20 页原论文，44 条精选标注**。
+- 已报告通过：**23 项自动测试**；仅插导览流程在三类真实论文、共 44 页原研究内容上做过回归。
+- 尚未完成：当前44条解释与新导览的完整独立复核、全部逐条专业审查、最新移动端实机完整操作，以及阅读速度和理解质量的对照测量。
+- 首版主要处理带文字层的英文 PDF；扫描、旋转或异常裁剪文件尚不支持自动处理。
+- **仅插导览**与**生成正文旁注**是两条不同 PDF 路径；前者经过原页内容与部分结构保留检查，后者会重建研究页，不能假定保留原 PDF 的全部交互对象。
+
+更详细的边界见 [实际验收记录](review/STATUS.md)、[回归记录](review/ACADEMIC-REGRESSION.md) 和 [工程说明](docs/architecture.md)。
 
 ## 许可与反馈
 
-本项目新增代码、指令和中文解释采用 [MIT](LICENSE)。论文原内容为 **CC BY 4.0**，Noto 字体为 **SIL OFL 1.1**；**PyMuPDF 适用 AGPL／商业双许可**，本项目的 MIT 不改变依赖义务。详见[第三方说明](THIRD_PARTY_NOTICES.md)与[PyMuPDF 官方许可说明](https://pymupdf.readthedocs.io/en/latest/about.html#license-and-copyright)。
+本项目新增代码、指令和中文解释使用 [MIT](LICENSE)；样例原论文为 **CC BY 4.0**，Noto 字体使用 **SIL OFL 1.1**。依赖的 **PyMuPDF 适用 AGPL／商业双许可**，项目自身的 MIT 不会覆盖第三方依赖许可。详见 [第三方说明](THIRD_PARTY_NOTICES.md)。
 
-欢迎[报告一个具体问题](https://github.com/Levinesjob/source-annotations/issues/new?template=feedback.yml)：论文版本、页码、预期和实际结果，比单纯点赞更能帮助改进。请移除私人和公司材料。
+如果某条批注遗漏了条件、误读了公式，或者导览跳错了位置，欢迎通过 [Issues](https://github.com/Levinesjob/source-annotations/issues/new?template=feedback.yml) 说明论文版本、页码与具体问题。这样的反馈比单纯增加标注数量更有帮助。
+
+请先移除私人或公司材料。[改稿差异与本轮验证结果](docs/readme-review.md)。
