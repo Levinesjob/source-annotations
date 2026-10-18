@@ -8,6 +8,7 @@
 | paper.identifier / url / sha256 | DOI或arXiv版本标识、真实来源链接和文件指纹；标识缺失用 `/` |
 | reading_guide.headline | 16–19pt的中文核心观点标题，不是作者原始标题 |
 | core_view | 两三句：问题、关键方法、最重要且有依据的发现/贡献 |
+| mechanism_flow（可选） | 三个有原文依据的计算步骤，每步含expression和meaning；以可检索文字画成简图。不适合三步表达时省略，不强迫套用 |
 | prerequisites | 简短先修概念与本文中的用法，不写百科长文 |
 | background.links | label、可选short_label和真实url；没有核对过的知识库路径不能添加 |
 | target_minutes / steps[].minutes | 建议预算与每项分配，必须加总相等，不是实测提速 |

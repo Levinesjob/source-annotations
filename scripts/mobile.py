@@ -10,7 +10,7 @@ import pymupdf as fitz
 
 def build_mobile(source,datafile,output,annotated=None):
     source,datafile,output=map(Path,(source,datafile,output))
-    annotated=Path(annotated) if annotated else output.parent/'waypoint-opd-v1-annotated.pdf'
+    annotated=Path(annotated) if annotated else output.parent/(source.stem+'-annotated.pdf')
     data=json.loads(datafile.read_text(encoding='utf-8'))
     display_title=e(data['paper'].get('short_title') or data['paper']['title'].split(':',1)[0])
     report=json.loads(annotated.with_suffix('.report.json').read_text(encoding='utf-8'))

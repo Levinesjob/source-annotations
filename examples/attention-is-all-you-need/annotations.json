@@ -13,7 +13,7 @@
     "sha256": "0a9bff1be3575cf9fe26a4a3d3a9175bc791ecec90de8b9deba4cff75d2b9476"
   },
   "reading_scope": "正文第1–10页通读；参考文献10–12页作条目核对，未逐篇精读；附录第13–15页图3–5及图注已读。",
-  "annotation_scope": "34条精选，覆盖正文全部2幅主图、4张表及3幅附录图；完整原文保留。",
+  "annotation_scope": "35条精选，覆盖正文全部2幅主图、4张表及3幅附录图；完整原文保留。",
   "review_status": {
     "author_review": "AI逐条对照原文的初稿，未获人类专业签核",
     "independent_tool": "pending",
@@ -140,7 +140,7 @@
       "kind": "term",
       "side": "left",
       "quote": "a query and a set of key-value pairs",
-      "text": "a query and a set of key-value pairs：一次查询向量，及供匹配的键、供汇总的值；不是搜索引擎里的文字查询。",
+      "text": "a query and a set of key-value pairs：Q提出查询，K供匹配，V供取用；三者是学习得到的向量。",
       "evidence": "解读",
       "tag": "词义",
       "nature": "explanation",
@@ -157,8 +157,8 @@
       "tag": "公式",
       "nature": "definition_or_relation",
       "reason": "辅助读者在原文中理解机制、证据或边界。",
-      "symbols": "Q存查询；K存匹配特征；V存待汇总内容；dk是每个键的维数。",
-      "design": "Q乘K转置得到位置间分数，除以根号dk后沿键方向做softmax，再乘V。",
+      "symbols": "Q：要找什么；K：供比对的特征；V：要汇总的内容；dk：键的维数。",
+      "design": "Q乘K转置算匹配分数，缩放后沿每行做softmax；再乘V，得到各查询的输出。",
       "example": "本文每头dk=64，缩放因子为1/8（第4页）；不是把V也除以8。"
     },
     {
@@ -183,7 +183,8 @@
       "evidence": "主张",
       "tag": "要点",
       "nature": "author_claim",
-      "reason": "辅助读者在原文中理解机制、证据或边界。"
+      "reason": "辅助读者在原文中理解机制、证据或边界。",
+      "limitation": "不同头用不同学习投影；不能预先规定某个头必然负责固定语法关系。"
     },
     {
       "id": "t13",
@@ -464,23 +465,35 @@
       "tag": "说明",
       "nature": "author_claim",
       "reason": "辅助读者在原文中理解机制、证据或边界。"
+    },
+    {
+      "id": "t35",
+      "page": 3,
+      "kind": "key",
+      "side": "right",
+      "quote": "The output is computed as a weighted sum of the values, where the weight assigned to each value is computed by a compatibility function of the query with the corresponding key.",
+      "text": "按Q/K匹配得到的权重汇总V，形成带上下文的表示；不是只取匹配最高的一项。",
+      "evidence": "推导",
+      "tag": "机制",
+      "nature": "definition_or_relation",
+      "reason": "把核心机制绑定到原文定义。",
+      "limitation": "这是计算定义，不能据此认定注意力权重就是因果解释。"
     }
   ],
   "core_findings": [
     {
-      "title": "用注意力取代循环和卷积",
       "annotation": "t03"
     },
     {
-      "title": "英德与英法翻译结果及比较范围",
+      "annotation": "t35"
+    },
+    {
+      "annotation": "t12"
+    },
+    {
       "annotation": "t23"
     },
     {
-      "title": "多头消融：并非头越多越好",
-      "annotation": "t25"
-    },
-    {
-      "title": "迁移到句法分析但未超过所有基线",
       "annotation": "t28"
     }
   ],
@@ -537,19 +550,19 @@
   "reading_guide": {
     "target_minutes": 45,
     "status": "budget_not_measured",
-    "headline": "用注意力取代循环，让序列模型更便于并行训练",
-    "problem": "循环模型按位置逐步计算，限制了单个序列内部的并行训练。",
-    "plain_method": "各位置用注意力交换信息，再用多头、位置编码和前馈层组成编码器与解码器。",
-    "core_view": "Transformer用注意力替代循环和卷积，缩短位置之间的信息路径。论文在翻译和句法分析中验证效果；训练更并行，但生成仍是自回归，注意力也并非恒定计算量。",
+    "headline": "让每个词直接取用相关上下文，再完成翻译",
+    "problem": "机器翻译要结合上下文生成另一种语言；循环模型依次传递状态，远距离信息要走过许多步。",
+    "plain_method": "用注意力在位置间汇总信息，多头学习不同投影，再组成编码器与自回归解码器。",
+    "core_view": "机器翻译需要把输入句子的上下文带入输出。Transformer用Q/K匹配得到权重，再汇总V，让位置直接交换信息，替代循环与卷积；v1英德翻译达28.4 BLEU。",
     "prerequisites": [
-      "序列到序列：把一句话译为另一句话；词向量表示词，softmax把分数变成概率。",
-      "Encoder / Decoder：前者编码输入，后者根据输入与已生成内容继续预测；注意力决定从哪里取信息。"
+      "序列到序列：输入一句话，输出另一种语言。编码器理解输入；解码器依据输入和已生成的词继续预测。",
+      "Q查询、K匹配特征、V待汇总内容，均是向量；softmax把分数归一化为权重。"
     ],
     "goal": "能解释Q/K/V与多头怎么工作、为何训练更并行，以及结果和复杂度的边界。",
     "audience": "适合知道向量、矩阵乘法与基本神经网络的读者；逐式推导和代码复现另需时间。",
     "steps": [
       {
-        "title": "问题：循环的串行步骤限制训练并行",
+        "title": "问题：翻译需要上下文，循环计算却要逐步传递",
         "minutes": 5,
         "read": "从单个样本内部的串行依赖理解研究动机。",
         "pages": [
@@ -559,12 +572,12 @@
         "targets": [
           {
             "annotation": "t02",
-            "label": "第1页 · 串行瓶颈"
+            "label": "原文第1页 · 串行瓶颈"
           }
         ]
       },
       {
-        "title": "结构：编码输入，再用解码器逐步生成",
+        "title": "结构：编码输入，带因果遮罩逐词解码",
         "minutes": 10,
         "read": "图1辨认编码器、自注意力、跨端注意力与前馈层。",
         "pages": [
@@ -574,16 +587,16 @@
         "targets": [
           {
             "annotation": "t07",
-            "label": "第3页 · 图1结构"
+            "label": "原文第3页 · 图1结构"
           },
           {
             "annotation": "t08",
-            "label": "第3页 · 因果遮罩"
+            "label": "原文第3页 · 因果遮罩"
           }
         ]
       },
       {
-        "title": "计算：Q/K/V匹配、多头投影与位置编码",
+        "title": "机制：匹配Q/K、汇总V，多头做不同投影",
         "minutes": 15,
         "read": "围绕三处公式理解数据如何流动。",
         "pages": [
@@ -594,20 +607,20 @@
         "targets": [
           {
             "annotation": "t10",
-            "label": "第3页 · 注意力公式"
+            "label": "原文第3页 · 注意力公式"
           },
           {
             "annotation": "t13",
-            "label": "第4页 · 多头公式"
+            "label": "原文第4页 · 多头公式"
           },
           {
             "annotation": "t17",
-            "label": "第5页 · 位置编码"
+            "label": "原文第5页 · 位置编码"
           }
         ]
       },
       {
-        "title": "证据：看翻译测试、消融和句法分析",
+        "title": "证据：英德28.4、英法41.0，核对测试与消融",
         "minutes": 10,
         "read": "区分测试集与开发集、BLEU与F1、单模型与集成。",
         "pages": [
@@ -617,20 +630,20 @@
         "targets": [
           {
             "annotation": "t23",
-            "label": "第8页 · 表2翻译"
+            "label": "原文第8页 · 表2翻译"
           },
           {
             "annotation": "t25",
-            "label": "第8页 · 多头消融"
+            "label": "原文第8页 · 多头消融"
           },
           {
             "annotation": "t28",
-            "label": "第9页 · 表4句法"
+            "label": "原文第9页 · 表4句法"
           }
         ]
       },
       {
-        "title": "边界：并行训练不等于并行生成",
+        "title": "边界：训练可并行，生成仍逐词；长序列有成本",
         "minutes": 5,
         "read": "注意n平方复杂度和论文的实际任务范围。",
         "pages": [
@@ -640,17 +653,31 @@
         "targets": [
           {
             "annotation": "t19",
-            "label": "第6页 · 复杂度条件"
+            "label": "原文第6页 · 复杂度条件"
           },
           {
             "annotation": "t30",
-            "label": "第10页 · 生成边界"
+            "label": "原文第10页 · 生成边界"
           }
         ]
       }
     ],
     "defer": "参考文献逐篇阅读、训练复现及附录逐头可视化可按需要补读。",
-    "checkpoint": "合上导览，用自己的话说明机制、证据和限制；时间预算不代表已经读懂。"
+    "checkpoint": "合上导览，用自己的话说明机制、证据和限制；时间预算不代表已经读懂。",
+    "mechanism_flow": [
+      {
+        "expression": "Q K^T / sqrt(d_k)",
+        "meaning": "匹配并缩放分数"
+      },
+      {
+        "expression": "softmax(分数)",
+        "meaning": "每个查询的权重和为1"
+      },
+      {
+        "expression": "权重 × V",
+        "meaning": "汇总为上下文表示"
+      }
+    ]
   },
   "background": {
     "paragraphs": [
@@ -674,33 +701,5 @@
         "url": "https://nlp.seas.harvard.edu/annotated-transformer/"
       }
     ]
-  },
-  "showcase": {
-    "heading": "论文标题，展开为阅读主线",
-    "title_clip": [
-      208,
-      97,
-      403,
-      120
-    ],
-    "background": {
-      "selection": "选择 Seq2seq 前序资料",
-      "title": "Sequence to Sequence Learning",
-      "description": "先把输入句子编码，再逐步生成输出句子；这是理解本文改进前的序列模型起点。",
-      "address": "arxiv.org/abs/1409.3215",
-      "return_note": "打开前序论文，补背景后回到本文。"
-    },
-    "evidence": {
-      "annotation": "t30",
-      "heading": "从导览观点，回到原文",
-      "category": "作者主张",
-      "guide_clip": [
-        105,
-        532,
-        319,
-        579
-      ],
-      "click_text": "点击“生成边界”，定位到作者原句。"
-    }
   }
 }

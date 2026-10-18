@@ -7,7 +7,7 @@
 3. 逐项关闭 `TODO.md` 中已完成项，保留证据，更新README状态和CHANGELOG。
 4. 确认发布账号为用户期望账号。当前连接显示Levinesjob；仓库默认source-annotations。
 5. 仅上传 `scripts/`、`references/`、`agents/`、`assets/`、`examples/`、`tests/`、`docs/`、`.github/`、`output/` 中审查过的文件，以及根目录文档。`.venv/`、`local/`、原始聊天和账号信息不能上传。公开独立报告须移除本机绝对路径和无关上下文。
-6. 创建MIT公开仓库，默认分支main；发布v0.1.0标签及ZIP附件。原论文内容按第三方说明保留CC BY 4.0归属。
+6. 更新已有公开仓库main；本轮不重写历史Release标签。逐项核对第三方许可；当前Attention全文仅本地生成，不能因旧例曾允许分发而沿用。
 7. 从公开版本重新下载，执行README最短路径，核对可见样例与版本对应。
 8. 完成后再写知乎文章与B站录屏；每处链接都用实际发布地址，不用计划地址冒充已发布。
 

@@ -48,7 +48,7 @@ for name,title,authors,identifier,url,headline,core,prereqs,stages in cases:
     with fitz.open(output) as out:out[0].get_pixmap(matrix=fitz.Matrix(1.4,1.4)).save(root/(name+'-guide.png'))
     results.append({'case':name,'source_url':url,'source_sha256':data['paper']['sha256'],'style':r['profile'],
                     'checks':r['validation'],'navigation':[s['match'] for s in steps]})
-way=prepend(ROOT/'local/waypoint-opd-v1.pdf',ROOT/'examples/waypoint-opd/annotations.json',ROOT/'output/waypoint-opd-v1-reading-brief.pdf')
-results.append({'case':'waypoint','checks':way['validation'],'style':way['profile']})
+way=prepend(ROOT/'local/attention-is-all-you-need-v1.pdf',ROOT/'examples/attention-is-all-you-need/annotations.json',root/'attention-guide.pdf')
+results.append({'case':'attention','checks':way['validation'],'style':way['profile']})
 (root/'results.json').write_text(json.dumps(results,ensure_ascii=False,indent=2),encoding='utf-8')
 print(json.dumps([{'case':r['case'],'pages':r['checks']['source_pages'],'columns':r['style']['columns']} for r in results]))

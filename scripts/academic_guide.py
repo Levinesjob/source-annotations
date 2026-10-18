@@ -65,6 +65,7 @@ def compile_content(data):
     identifier=paper.get('identifier') or (re.search(r'(?:abs|pdf)/([^/#?]+)',url).group(1) if re.search(r'(?:abs|pdf)/([^/#?]+)',url) else '/')
     return {'title':title,'english_title':paper.get('title','/'),'authors':paper.get('authors','/'),
             'identifier':identifier,'url':url,'minutes':guide['target_minutes'],
+            'mechanism_flow':guide.get('mechanism_flow',[]),
             'core':guide.get('core_view') or guide.get('plain_method') or guide.get('goal','/'),
             'prerequisites':guide.get('prerequisites') or data.get('background',{}).get('paragraphs',[]),
             'references':data.get('background',{}).get('links',[]),
@@ -109,6 +110,20 @@ def plan_brief(content,profile):
         ops.append({'op':'line','box':[x,y,right,y]});y+=3
         section('核心观点')
         text(content['core'])
+        flow=content.get('mechanism_flow',[])
+        if flow:
+            if len(flow)!=3:raise ValueError('Mechanism flow needs three source-grounded stages')
+            cell=(width-30)/3
+            for i,stage in enumerate(flow):
+                sx=x+i*(cell+15)
+                for j,key in enumerate(('expression','meaning')):
+                    value=stage[key];size=9
+                    if font.text_length(value,fontsize=size)>cell:
+                        raise ValueError('Shorten mechanism flow label')
+                    ops.append({'op':'text','text':value,'x':sx,'y':y+j*15,'size':size,'face':'cjk','color':(0,0,0)})
+                if i<2:
+                    ops.append({'op':'text','text':'→','x':sx+cell,'y':y+7,'size':9,'face':'cjk','color':(0,0,0)})
+            y+=36
         section('先修知识')
         for p in content['prerequisites']:text(p,9.5,gap=2)
         for link in content['references']:

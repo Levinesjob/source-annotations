@@ -7,7 +7,7 @@ import urllib.request
 
 root = Path(__file__).resolve().parents[1]
 parser=argparse.ArgumentParser(description=__doc__)
-parser.add_argument('--example',choices=('waypoint-opd','attention-is-all-you-need'),default='waypoint-opd')
+parser.add_argument('--example',choices=('attention-is-all-you-need',),default='attention-is-all-you-need')
 args=parser.parse_args()
 paper = json.loads((root/'examples'/args.example/'annotations.json').read_text(encoding='utf-8'))['paper']
 target = root/'local'/f'{args.example}-v1.pdf'

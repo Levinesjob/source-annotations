@@ -13,7 +13,7 @@
 | verify.py / prepend_guide.verify_inserted | 重新打开成品，检查对应路径的文字、几何、对象或像素 | 不验证学术解释正确 |
 | mobile.py | 将最终PDF渲染为原页HTML，复用定位及版本哈希 | 不是全文可检索HTML或自适应重排阅读器 |
 
-真实记录例如保留完整的`student-visited prefixes`原句和本文义，具体见[样例JSON](../examples/waypoint-opd/annotations.json)。原句经兼容字符/空白规范化匹配后映射回原生字符框；重复引文需明确出现次数，不能默认取第一次。
+真实记录例如保留完整的`sequence transduction`原句和本文义，具体见[样例JSON](../examples/attention-is-all-you-need/annotations.json)。原句经兼容字符/空白规范化匹配后映射回原生字符框；重复引文需明确出现次数，不能默认取第一次。
 
 ## 两条 PDF 路径
 

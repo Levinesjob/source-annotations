@@ -1,0 +1,146 @@
+{
+  "paper": "https://arxiv.org/abs/1706.03762v1",
+  "source_sha256": "0a9bff1be3575cf9fe26a4a3d3a9175bc791ecec90de8b9deba4cff75d2b9476",
+  "annotated_sha256": "06d49318b0168e7d5fa390759a90f511a79d5bbb5a0b6b8bd3d8a80a921a8252",
+  "meaning": "Static diagrams and attributed short PDF excerpts; no full research pages or simulated interaction.",
+  "figures": {
+    "reading-poster.png": {
+      "size": [
+        1600,
+        1290
+      ],
+      "crops": [
+        {
+          "role": "Actual project-authored reading brief",
+          "pdf_page": 1,
+          "clip_pt": [
+            0.0,
+            0.0,
+            612.0,
+            792.0
+          ],
+          "display_width_px": 430
+        },
+        {
+          "role": "Exact highlighted weighted-sum definition, original page 3",
+          "pdf_page": 4,
+          "clip_pt": [
+            106.0,
+            531.307373046875,
+            506.0037841796875,
+            565.0690307617188
+          ],
+          "display_width_px": 1006
+        },
+        {
+          "role": "Actual t35 marginal explanation, enlarged",
+          "pdf_page": 4,
+          "clip_pt": [
+            516.0,
+            614.0654528808593,
+            606.0,
+            757.1654528808593
+          ],
+          "display_width_px": 230
+        }
+      ],
+      "sha256": "c50e3db132a41c80edbd31a92da94d02b339c02e13c2264e44ccfdcf6f651d29"
+    },
+    "attention-explained.png": {
+      "size": [
+        1600,
+        1070
+      ],
+      "crops": [],
+      "sha256": "0af62f41a90845e1427bf527d801fe0218fc61fc8704d4dc17afc7f7f721e1f3"
+    },
+    "evidence-trace.png": {
+      "size": [
+        1600,
+        750
+      ],
+      "crops": [
+        {
+          "role": "Actual Table 2 selected result rows",
+          "pdf_page": 9,
+          "clip_pt": [
+            134.67098999023438,
+            216.36170959472656,
+            452.7341003417969,
+            241.21701049804688
+          ],
+          "display_width_px": 1050
+        }
+      ],
+      "sha256": "e25ffbc84841514359cf4298f63a33a4e7e417f575bbfe32e95d928aa1a58e02"
+    },
+    "reading-poster-mobile.png": {
+      "size": [
+        880,
+        1990
+      ],
+      "crops": [
+        {
+          "role": "Exact highlighted weighted-sum definition, original page 3",
+          "pdf_page": 4,
+          "clip_pt": [
+            106.0,
+            531.307373046875,
+            506.0037841796875,
+            565.0690307617188
+          ],
+          "display_width_px": 784
+        },
+        {
+          "role": "Actual t35 marginal explanation, enlarged",
+          "pdf_page": 4,
+          "clip_pt": [
+            516.0,
+            614.0654528808593,
+            606.0,
+            757.1654528808593
+          ],
+          "display_width_px": 230
+        }
+      ],
+      "sha256": "fc7e335e7174fa4388963ed001953f8d6cfcaae72aef8a59465e5657ad3d3153"
+    },
+    "attention-explained-mobile.png": {
+      "size": [
+        880,
+        1610
+      ],
+      "crops": [],
+      "sha256": "f412e499beda97193e442f38a57f91a2fe4f280df14fa0f0b3549bcaf77ec6c3"
+    },
+    "evidence-trace-mobile.png": {
+      "size": [
+        880,
+        1020
+      ],
+      "crops": [
+        {
+          "role": "Actual Table 2 selected result rows",
+          "pdf_page": 9,
+          "clip_pt": [
+            134.67098999023438,
+            216.36170959472656,
+            452.7341003417969,
+            241.21701049804688
+          ],
+          "display_width_px": 784
+        }
+      ],
+      "sha256": "d11ec19503c688e39bec61f781d0a4dd30d8de791d4f4acaad6b89dec8c65327"
+    }
+  },
+  "navigation": {
+    "label": "原文第8页 · 表2翻译",
+    "output_page": 9,
+    "point": [
+      136.671,
+      218.87244
+    ],
+    "annotation": "t23"
+  }
+}

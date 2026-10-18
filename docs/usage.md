@@ -2,7 +2,7 @@
 
 ## 查看现成样例
 
-[标注PDF](../output/waypoint-opd-v1-annotated.pdf)、[只加导览PDF](../output/waypoint-opd-v1-reading-brief.pdf)、[手机HTML](../output/waypoint-opd-mobile.html)来自同一固定Waypoint-OPD v1。手机HTML内嵌真实PDF页面，可单独下载后在浏览器离线阅读；使用“打开PDF”按钮时，需将标注PDF按原文件名放同一个目录。不需要后台服务。GitHub不执行HTML。不是重新流式排版，窄屏需要放大。
+先看[中文导览](../examples/attention-is-all-you-need/showcase/preview-guide.png)与[静态展示](showcase.md)，再对照[原论文v1](https://arxiv.org/abs/1706.03762v1)。完整标注PDF、导览插页PDF和HTML仅在本地生成；原文许可未提供本仓库分发全文的通用授权。HTML直接显示最终PDF页面，需缩放阅读；打开PDF按钮需要同名PDF位于同一目录，无需后台服务。
 
 ## 本地生成
 
@@ -14,10 +14,10 @@ cd source-annotations
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe scripts/fetch_example.py
-.\.venv\Scripts\python.exe scripts/annotate.py local/waypoint-opd-v1.pdf examples/waypoint-opd/annotations.json local/reproduced.pdf
-.\.venv\Scripts\python.exe scripts/verify.py local/waypoint-opd-v1.pdf examples/waypoint-opd/annotations.json local/reproduced.pdf
-.\.venv\Scripts\python.exe scripts/mobile.py local/waypoint-opd-v1.pdf examples/waypoint-opd/annotations.json local/reproduced-mobile.html --pdf local/reproduced.pdf
-.\.venv\Scripts\python.exe scripts/prepend_guide.py local/waypoint-opd-v1.pdf examples/waypoint-opd/annotations.json local/reproduced-guide.pdf
+.\.venv\Scripts\python.exe scripts/annotate.py local/attention-is-all-you-need-v1.pdf examples/attention-is-all-you-need/annotations.json local/reproduced.pdf
+.\.venv\Scripts\python.exe scripts/verify.py local/attention-is-all-you-need-v1.pdf examples/attention-is-all-you-need/annotations.json local/reproduced.pdf
+.\.venv\Scripts\python.exe scripts/mobile.py local/attention-is-all-you-need-v1.pdf examples/attention-is-all-you-need/annotations.json local/reproduced-mobile.html --pdf local/reproduced.pdf
+.\.venv\Scripts\python.exe scripts/prepend_guide.py local/attention-is-all-you-need-v1.pdf examples/attention-is-all-you-need/annotations.json local/reproduced-guide.pdf
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
 
@@ -28,10 +28,10 @@ macOS/Linux将解释器换为`.venv/bin/python`，其他参数相同；**命令�
 只复现关键页：
 
 ```powershell
-.\.venv\Scripts\python.exe scripts/annotate.py local/waypoint-opd-v1.pdf examples/waypoint-opd/annotations.json local/key-pages.pdf --pages 1,4,7
+.\.venv\Scripts\python.exe scripts/annotate.py local/attention-is-all-you-need-v1.pdf examples/attention-is-all-you-need/annotations.json local/key-pages.pdf --pages 1,4,7
 ```
 
-指定页导出不带前置导览。三类插页回归执行`python scripts/regression_academic.py --fetch`，需先下载Waypoint样例；ResNet与Adam的原文和回归文件只保存在local/。
+指定页导出不带前置导览。三类插页回归执行`python scripts/regression_academic.py --fetch`，需先下载Attention样例；ResNet与Adam的原文和回归文件只保存在local/。
 
 ## 安装为 Skill
 

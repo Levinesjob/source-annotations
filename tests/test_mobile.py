@@ -26,12 +26,12 @@ class Targets(HTMLParser):
 
 class MobileTests(unittest.TestCase):
     def test_reader_uses_exact_pdf_pages_and_retains_source_targets(self):
-        source=ROOT/'local/waypoint-opd-v1.pdf'
+        source=ROOT/'local/attention-is-all-you-need-v1.pdf'
         if not source.exists():self.skipTest('Fetch pinned example for integration test')
-        data=ROOT/'examples/waypoint-opd/annotations.json'
+        data=ROOT/'examples/attention-is-all-you-need/annotations.json'
         with tempfile.TemporaryDirectory() as tmp:
             out=Path(tmp)/'reader.html'
-            annotated=ROOT/'output/waypoint-opd-v1-annotated.pdf'
+            annotated=ROOT/'local/attention-preview/attention-is-all-you-need-v1-annotated.pdf'
             count=mobile.build_mobile(source,data,out,annotated)
             text=out.read_text(encoding='utf-8');p=Targets();p.feed(text)
             self.assertEqual(len(p.links),count)
@@ -58,12 +58,12 @@ class MobileTests(unittest.TestCase):
             self.assertNotIn('【解读·词义】',text)
 
     def test_changed_data_cannot_silently_use_stale_pdf(self):
-        source=ROOT/'local/waypoint-opd-v1.pdf'
+        source=ROOT/'local/attention-is-all-you-need-v1.pdf'
         if not source.exists():self.skipTest('Fetch pinned example for integration test')
         with tempfile.TemporaryDirectory() as tmp:
             changed=Path(tmp)/'notes.json'
-            changed.write_bytes((ROOT/'examples/waypoint-opd/annotations.json').read_bytes()+b' ')
+            changed.write_bytes((ROOT/'examples/attention-is-all-you-need/annotations.json').read_bytes()+b' ')
             with self.assertRaisesRegex(ValueError,'Regenerate'):
-                mobile.build_mobile(source,changed,Path(tmp)/'out.html',ROOT/'output/waypoint-opd-v1-annotated.pdf')
+                mobile.build_mobile(source,changed,Path(tmp)/'out.html',ROOT/'local/attention-preview/attention-is-all-you-need-v1-annotated.pdf')
 
 if __name__=='__main__':unittest.main()

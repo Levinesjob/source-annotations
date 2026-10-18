@@ -8,10 +8,12 @@
 
 ## 可以看到什么
 
-- 34条精选：必要术语、长句直译、五处公式说明与关键发现。
+- 35条精选：必要术语、长句直译、五处公式说明与关键发现。
 - 一页背景和阅读路线，11个PDF内部入口，三条基础/前序资料链接。
 - 图1/2、表1–4及附录图3–5均有同页标注；保留未标注的原文和参考文献。
 - 明确区分作者主张、实验结果、数学关系与辅助解释；45分钟只是预算。
+
+核心主线是机器翻译任务、位置间的信息交互、Q/K/V计算与对应实验证据，不把训练速度当作全部贡献。
 
 本例尤其注意三处易混淆的地方：训练更并行不等于生成无需串行；表2是测试集、表3是开发集；v1英法成绩41.0是单模型结果，不能说胜过表里所有集成。
 
@@ -33,14 +35,13 @@
 
 ## 复现展示素材
 
-安装可选依赖requirements-showcase.txt后：
+安装可选依赖requirements-showcase.txt后执行：
 
 ```powershell
-.\.venv\Scripts\python.exe scripts/attention_showcase.py
-.\.venv\Scripts\python.exe scripts/reading_motion.py --annotations examples/attention-is-all-you-need/annotations.json --source local/attention-is-all-you-need-v1.pdf --pdf local/attention-preview/attention-is-all-you-need-v1-annotated.pdf --output-dir examples/attention-is-all-you-need/showcase --check-dir local/attention-preview/motion-check
+.\.venv\Scripts\python.exe scripts/reading_showcase.py
 ```
 
-动图展示标题到观点、背景入口、导览回查原句；是基于真实内容与GoTo位置制作的动作示意，不是操作录屏或实际生成耗时。注意力公式、整页研究内容与完整手机HTML不作为公开宣传素材上传。
+生成静态主海报、注意力机制图、证据路径图的桌面和窄屏版本，以及真实导览预览。全部使用同一JSON和成品PDF；[static-manifest.json](showcase/static-manifest.json)记录裁图坐标、来源和哈希。不再生成动图，不公开完整研究页或全文HTML。
 
 ## 来源与范围
 

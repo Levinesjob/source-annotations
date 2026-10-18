@@ -7,8 +7,8 @@ Python 3.11+，先安装 `requirements.txt`。依赖和中文字体均随包说�
 ```sh
 python -m pip install -r requirements.txt
 python scripts/fetch_example.py
-python scripts/annotate.py local/waypoint-opd-v1.pdf examples/waypoint-opd/annotations.json output/waypoint-opd-v1-annotated.pdf
-python scripts/render.py output/waypoint-opd-v1-annotated.pdf local/render
+python scripts/annotate.py local/attention-is-all-you-need-v1.pdf examples/attention-is-all-you-need/annotations.json local/attention-preview/attention-is-all-you-need-v1-annotated.pdf
+python scripts/render.py local/attention-preview/attention-is-all-you-need-v1-annotated.pdf local/render
 python -m unittest discover -s tests -v
 ```
 
@@ -52,7 +52,7 @@ python -m unittest discover -s tests -v
 
 `core_findings`保存3–5条发现及主证据标注ID；每条必须标黄并附限制。`coverage`记录实验领域、主图表和标注的关系；`main_source_pages`说明正文范围。脚本对照实际Figure/Table标题清点正文主图表并要求同页标注；人工继续检查相关性。附录范围和例外需另行说明。
 
-手机原页入口：先生成最终标注PDF，再执行`python scripts/mobile.py 原文.pdf 标注.json output/waypoint-opd-mobile.html`。默认读取输出目录的`waypoint-opd-v1-annotated.pdf`，其他名称用`--pdf`指定。页面直接由该PDF渲染，嵌入图片可离线阅读；哈希不一致会拒绝生成，避免两端版本分裂。外部资料链接需要网络。
+手机原页入口：先生成最终标注PDF，再执行`python scripts/mobile.py 原文.pdf 标注.json local/attention-preview/attention-is-all-you-need-mobile.html`。默认读取输出目录下“原文文件名（去扩展名）+-annotated.pdf”，其他名称用`--pdf`指定。页面直接由该PDF渲染，嵌入图片可离线阅读；哈希不一致会拒绝生成，避免两端版本分裂。外部资料链接需要网络。
 
 ## 输出与失败
 

@@ -1,74 +1,68 @@
 # Source Annotations
 
-**Read the paper, not just the summary.**
+**把论文的阅读辅助，留在论文里。**<br>
+Read the paper, not just the summary.
 
-把阅读导览、原文旁注和证据入口放在一起，**帮你亲自读进原论文**。
+先用一页导览补背景、找主线，再带着术语、长句和公式解释读原文；重要判断可以直接回到证据。
 
-**主案例：《Attention Is All You Need》，固定 arXiv v1。**
+[看一页导览](examples/attention-is-all-you-need/showcase/preview-guide.png) · [读原论文](https://arxiv.org/abs/1706.03762v1) · [本地生成 PDF](#快速开始) · [标注数据](examples/attention-is-all-you-need/annotations.json)
 
-[看导览预览](examples/attention-is-all-you-need/showcase/preview-guide.png) · [原论文](https://arxiv.org/abs/1706.03762v1) · [生成完整 PDF](examples/attention-is-all-you-need/README.md) · [三种用法与依赖](#快速开始)
-
-<a href="examples/attention-is-all-you-need/README.md">
 <picture>
-  <source media="(prefers-reduced-motion: reduce) and (max-width: 600px)" srcset="examples/attention-is-all-you-need/showcase/motion-concept-mobile-still.png">
-  <source media="(prefers-reduced-motion: reduce)" srcset="examples/attention-is-all-you-need/showcase/motion-concept-still.png">
-  <source media="(max-width: 600px)" srcset="examples/attention-is-all-you-need/showcase/motion-concept-mobile.gif">
-  <img src="examples/attention-is-all-you-need/showcase/motion-concept.gif" alt="从真实论文标题展开到中文主线和核心观点：先知道问题、方法与结果边界，再进入原文。" width="1200">
+  <source media="(max-width: 600px)" srcset="examples/attention-is-all-you-need/showcase/reading-poster-mobile.png">
+  <img src="examples/attention-is-all-you-need/showcase/reading-poster.png" alt="真实导览、原文加权汇总定义及同页旁注；阅读导览、旁注、证据追溯、可复现文件组成完整阅读路径。" width="1600">
 </picture>
-</a>
 
-*标题 → 中文主线 → 核心观点。基于现有导览的动作示意，非录屏或即时生成；[静态版](examples/attention-is-all-you-need/showcase/motion-concept-still.png)。*
+## 摘要看懂了，正文还是会卡住
 
-## 摘要看懂了，正文却读不下去
+一个术语让你去搜索，一段长句又把你带进聊天窗口。回到公式时，已经忘了它要解决什么问题；看到结果，还得找实验条件。摘要适合筛选，**理解方法与证据，仍要自己读原文**。
 
-一个陌生术语让你打开搜索页，一段长句又把你带进聊天窗口。回到公式时，你已经忘了它要解决哪个问题；看到提升数字，还得往回找比较对象和实验条件。
+| 读法 | 阅读过程中会发生什么 |
+|---|---|
+| 自己逐页精读 | 自己补背景、拆句、找证据；来回切换容易打断上下文 |
+| 只让 AI 总结 | 快速得到概括；不一定能解释公式、比较条件和结论依据 |
+| **带着导览读原文** | **先知道任务与路线，难点在原句旁解释，结论有可点击的证据入口** |
 
-自己逐页精读能保留细节，但补背景、拆长句和找出处都得自己组织。只看 AI 总结虽然容易先获得答案，却可能说不清方法为什么这样设计、结论由什么支持。我们希望把找路和理解辅助交给工具，**把阅读、推敲和判断留给读者**。
+## 用 Attention Is All You Need 看一次
 
-| 读法 | 先得到什么 | 门槛与仍需完成的事 |
-|---|---|---|
-| 自己逐页精读 | 原文细节与完整语境 | 遇到知识缺口或难句时暂停查找；自己梳理主线和证据，容易反复切换 |
-| 只看 AI 总结 | 问题和结论的快速概括，适合筛选 | 能复述概括，不一定理解推导和实验；还要回原文核对条件与出处 |
-| **带着导览读原文** | **必要背景、阅读路线和可点击的证据入口** | 有准备地进入关键段落，亲自理解和查证；仍需核对 AI 解释，不能跳过原文 |
+### 先看懂它在做什么
 
-## 围绕读原文，做好四件事
+机器翻译把输入句子转成另一种语言。本文的关键不只是“训练更快”，而是**用注意力进行位置之间的信息交互，组成不依赖循环与卷积的编码器—解码器**。Q/K 决定取用信息的权重，V 提供要汇总的内容；前馈层、位置编码、残差与归一化仍在。
 
-<a href="examples/waypoint-opd/showcase/framework-overview.png">
 <picture>
-  <source media="(max-width: 600px)" srcset="examples/waypoint-opd/showcase/framework-mobile.png">
-  <img src="examples/waypoint-opd/showcase/framework-overview.png" alt="四角阅读框架：左上阅读导览，右上原文旁注，左下证据追溯，右下可复现产物；中心是亲自读原论文。" width="1440">
+  <source media="(max-width: 600px)" srcset="examples/attention-is-all-you-need/showcase/attention-explained-mobile.png">
+  <img src="examples/attention-is-all-you-need/showcase/attention-explained.png" alt="注意力三步计算及三种信息来源：编码器自注意力、解码器遮罩自注意力、编码器—解码器注意力。" width="1600">
 </picture>
-</a>
 
-### 导览的核心：补上前情，再把你送到值得细读的地方
+[一页导览](examples/attention-is-all-you-need/showcase/preview-guide.png)把问题、先修知识、阅读顺序和原文入口放在一起。背景不足时，可继续读[Seq2seq 前序](https://arxiv.org/abs/1409.3215)、[早期注意力工作](https://arxiv.org/abs/1409.0473)或[Harvard 实现讲解](https://nlp.seas.harvard.edu/annotated-transformer/)。
 
-- **补背景，让术语有来处。** 先解释概念在本文中的用法；讲不完的前情，接上入门资料和直接前序工作。样例先说明序列到序列、词向量和编码器/解码器，再连到 Seq2seq 与早期注意力论文，避免一上来就被术语挡住。
-- **给读法，让阅读有主线。** 用简短核心观点串起问题、方法与发现，再安排“问题 → 方法 → 机制 → 证据 → 边界”的路径。每项带原文页码和建议用时，让你知道先读哪里、在哪里停下来核查，而不只得到一份重点清单。
-- **连证据，让概括能被查证。** 样例导览有 **11 个 PDF 内部入口**，可直接进入对应原句、图表或公式的位置，不必重新翻找。不能精确定位时明确标为整页入口；读者可以继续检查作者的实验、假设和限制。
+### 再沿入口核对证据
 
-**AI 提供背景、路线和解释，你沿着它们回到原文形成自己的理解。** 旁注接住阅读中的词句和公式难点，可复现文件留下这次阅读的线索。
+<picture>
+  <source media="(max-width: 600px)" srcset="examples/attention-is-all-you-need/showcase/evidence-trace-mobile.png">
+  <img src="examples/attention-is-all-you-need/showcase/evidence-trace.png" alt="从导览英德28.4 BLEU的概括，沿真实PDF内部入口到原文第8页表2，核对模型、测试集及单模型/集成边界。" width="1600">
+</picture>
+
+图是静态说明，**实际跳转在生成的 PDF / HTML 中操作**。旁注区分实测、推导、作者主张与导读解释。图中原文均是固定 v1 的少量节选；不是虚构界面，也不是即时生成演示。
 
 ## 快速开始
 
-### 依赖与环境
+### 依赖
 
-| 需要什么 | 实际要求 |
+| 需要什么 | 当前要求 |
 |---|---|
-| Python 与 PDF 引擎 | **Python 3.11+**；`PyMuPDF==1.26.5`，用 `requirements.txt` 安装 |
-| 字体 | Noto CJK 已随完整仓库放在 `assets/` |
-| 模型与 API Key | 复现已有记录**不需要**；新论文需要能读 PDF、写文件和执行 Python 的智能体，是否需 API Key 取决于工具 |
-| 下载 | ZIP 或 Git；首次安装依赖和下载原论文需网络 |
-| 已验收环境 | **Windows / Python 3.13.5**；macOS/Linux 尚未完整验收 |
+| 运行环境 | **Python 3.11+ / PyMuPDF 1.26.5**；字体在仓库 `assets/` 中 |
+| 复现已有样例 | 不需要模型或 API Key；首次下载论文和安装依赖需要网络 |
+| 处理新论文 | 需要能阅读文件、写 JSON、执行 Python 的智能体；模型费用依所用工具而定 |
+| 已验证平台 | Windows / Python 3.13.5；macOS、Linux 未完整验收 |
 
-### 方式一：直接读样例
+### 方式一：先看现有示例
 
-先看[Transformer 导览预览](examples/attention-is-all-you-need/showcase/preview-guide.png)与下面的动图，再打开[原论文](https://arxiv.org/abs/1706.03762v1)对照。完整的导览 PDF、标注 PDF 和手机 HTML 按方式二在本地生成；原文许可没有提供通用再分发授权，仓库不上传其全文副本。
+打开[中文导览预览](examples/attention-is-all-you-need/showcase/preview-guide.png)，对照[原论文 v1](https://arxiv.org/abs/1706.03762v1)。完整标注 PDF、导览插页 PDF 和手机 HTML 按下面步骤生成；原文许可未提供本项目上传全文副本的通用授权。
 
-如果想先下载一份现成的完整产物，原有 [Waypoint-OPD 标注 PDF](output/waypoint-opd-v1-annotated.pdf)、[导览 PDF](output/waypoint-opd-v1-reading-brief.pdf)和[手机 HTML](output/waypoint-opd-mobile.html)继续保留。HTML需下载后打开；“打开 PDF”按钮需要同名PDF放在同目录。内部跳转需阅读器支持。
+### 方式二：本地重建同一份阅读结果
 
-### 方式二：本地复现样例
-
-Windows PowerShell：
+<details>
+<summary>Windows PowerShell：安装、下载、生成、校验</summary>
 
 ```powershell
 git clone https://github.com/Levinesjob/source-annotations.git
@@ -82,68 +76,29 @@ python -m venv .venv
 .\.venv\Scripts\python.exe scripts/mobile.py local/attention-is-all-you-need-v1.pdf examples/attention-is-all-you-need/annotations.json local/attention-preview/attention-is-all-you-need-mobile.html --pdf local/attention-preview/attention-is-all-you-need-v1-annotated.pdf
 ```
 
-这是用**现成 JSON 重建导览、旁注和定位**，不会重新理解论文。两种 PDF 都含原文：本例是 1 页导览＋15 页论文。生成位置与版本细节见[主案例说明](examples/attention-is-all-you-need/README.md)，其他使用方式见[完整说明](docs/usage.md)。
+</details>
 
-### 方式三：用 Skill 读自己的论文
+输出在 `local/attention-preview/`：两种 PDF 均为 **1 页导览＋15 页原文**，HTML 使用同一标注 PDF 的页面与跳转。现成 JSON 只重建结果，不会重新分析论文。[完整用法](docs/usage.md) · [案例与来源](examples/attention-is-all-you-need/README.md)
 
-把完整目录安装到工具可发现的技能位置，不能只复制 `SKILL.md`。Codex、Cursor、Claude Code 的[目录与调用方式](docs/usage.md#安装为-skill)分别说明。
+### 方式三：安装 Skill，处理自己的论文
 
-> 使用 `$source-annotations` 精读这篇论文。先做一页导览，讲清问题、前置知识和阅读路径，链接到原文证据；再为难词、长句、关键公式和结论添加少量旁注。保留原论文，报告未核验的解释。
+把完整仓库放入智能体的技能目录，不能只复制 `SKILL.md`。见[安装与调用方式](docs/usage.md#安装为-skill)。
 
-新论文需要智能体重新通读和生成记录，不能只替换样例 PDF 路径。[通用文字指令](docs/plain-prompt.md)可用于其他聊天工具，但不保证能导出 PDF。
+> 使用 `$source-annotations` 阅读这篇论文。先讲清任务、输入输出与关键机制，制作一页可跳转的阅读导览；再为原文中的术语、长句、公式和关键发现补充少量旁注，明确证据与限制。
 
-## 读起来是什么样
-
-### 背景不熟？从概念进入基础资料
-
-导览先用一两句话接上背景，讲不完的知识保留继续阅读的入口。下面从序列到序列概念进入 Seq2seq 前序论文；**先补上这块知识，再回论文继续读**。
-
-<a href="https://arxiv.org/abs/1409.3215">
-<picture>
-  <source media="(prefers-reduced-motion: reduce) and (max-width: 600px)" srcset="examples/attention-is-all-you-need/showcase/motion-background-mobile-still.png">
-  <source media="(prefers-reduced-motion: reduce)" srcset="examples/attention-is-all-you-need/showcase/motion-background-still.png">
-  <source media="(max-width: 600px)" srcset="examples/attention-is-all-you-need/showcase/motion-background-mobile.gif">
-  <img src="examples/attention-is-all-you-need/showcase/motion-background.gif" alt="先修概念到导览中的真实背景链接，再到 Seq2seq 前序论文内容摘记。" width="1200">
-</picture>
-</a>
-
-*真实 PDF 链接与目标资料摘记的动作示意；目标画面不是网页截图。点击本图可打开资料；[静态版](examples/attention-is-all-you-need/showcase/motion-background-still.png)。*
-
-### 看懂一个判断，再追到原文
-
-**导览里的概括有原文入口。** 动图用“并行训练不等于并行生成”演示：点击导览中的生成边界入口，定位到作者原句，继续核对上下文。
-
-<a href="examples/attention-is-all-you-need/README.md">
-<picture>
-  <source media="(prefers-reduced-motion: reduce) and (max-width: 600px)" srcset="examples/attention-is-all-you-need/showcase/motion-evidence-mobile-still.png">
-  <source media="(prefers-reduced-motion: reduce)" srcset="examples/attention-is-all-you-need/showcase/motion-evidence-still.png">
-  <source media="(max-width: 600px)" srcset="examples/attention-is-all-you-need/showcase/motion-evidence-mobile.gif">
-  <img src="examples/attention-is-all-you-need/showcase/motion-evidence.gif" alt="从导览的边界判断点击 PDF 内部入口，跳到原论文第10页的生成边界原句及中文解释。" width="1200">
-</picture>
-</a>
-
-*动画按成品 PDF 的真实 GoTo 位置演示，非阅读器录屏。请在 PDF 中实际点击；[静态版](examples/attention-is-all-you-need/showcase/motion-evidence-still.png)。*
-
-### 继续读正文，解释就在原句旁
-
-**读到长句，解释就留在旁边。** 下图上方是同页、同坐标的原句；右下是同页直译放大，帮你接上“自回归”的意思。
-
-[![自回归原句与同页译句的前后对比](examples/attention-is-all-you-need/showcase/before-after.png)](examples/attention-is-all-you-need/showcase/before-after.png)
-
-实测、推导、作者主张、导读解释分开标记，不把辅助解释当作作者结论。完整空间关系可在本地生成的标注PDF中查看。
+智能体负责通读、理解和起草，脚本负责版本核对、定位、排版和导出。新论文需要新的标注记录，不能只换 PDF 路径。其他工具可参考[通用文字指令](docs/plain-prompt.md)，不保证能导出 PDF。
 
 ## 验证与边界
 
-主案例为 **15页原文＋1页导览、34条标注、11个内部入口、5处公式解释**。主案例更新在 main；[v0.1.0-preview.1](https://github.com/Levinesjob/source-annotations/releases/tag/v0.1.0-preview.1)保留发布时的 Waypoint-OPD 样例。
+- 当前案例有 **35 条标注、5 处公式解释、11 个 PDF 内部入口**；所有正文主图表均有同页标注，机械覆盖检查不等于内容已获专业认可。
+- 固定 2017 年 **v1**：英法结果为 **41.0 BLEU**。训练可并行不等于生成可同时完成；注意力仍有随序列长度增长的计算成本。
+- 独立内容审查和真实手机验收待完成；45 分钟是阅读预算，**未证明提速或准确率提升**。
+- 插导览路径保留原页对象；旁注路径有不同的结构限制。扫描、旋转和复杂交互对象见[工程说明](docs/architecture.md)。
 
-智能体起草解释，脚本负责版本校验、原句定位、绘制与机械检查。**机械检查通过不代表解释正确**。新案例已逐项对照原文并检查版式，独立模型复核、人类专业审查和真实手机操作仍未完成；45分钟仍是阅读预算，**没有量化提速结果**。既有23项自动测试与三类论文44页的导览回归是原工程记录，不等于新论文已经完成全部验收。
-
-只插导览与正文旁注是两条路径：前者验证了原页内容及部分结构保留；后者重建研究页，遇到原有人工批注或表单会拒绝，不能假定完整保留交互对象。扫描、旋转、异常裁剪及复杂结构的范围见[工程说明](docs/architecture.md)。
-
-[实际验收](review/STATUS.md) · [回归记录](review/ACADEMIC-REGRESSION.md) · [主案例标注 JSON](examples/attention-is-all-you-need/annotations.json) · [主案例验收记录](review/ATTENTION-2026-10-18.md)
+[当前验收](review/STATUS.md) · [改版记录](review/ATTENTION-STATIC-2026-10-18.md) · [待办](TODO.md) · [展示图来源与复现](docs/showcase.md)
 
 ## 许可与反馈
 
-新增代码、指令和中文解释采用 [MIT](LICENSE)；Waypoint-OPD 原文为 **CC BY 4.0**；Attention 原文适用 arXiv 非独占分发许可，完整副本仅在本地生成，原文及小范围引用不受本仓库 MIT 覆盖。Noto 字体为 **SIL OFL 1.1**。PyMuPDF 适用 **AGPL／商业双许可**，本项目 MIT 不覆盖依赖条款。见[第三方说明](THIRD_PARTY_NOTICES.md)。
+新增代码、指令和中文解释采用 [MIT](LICENSE)。原论文和少量引文归原作者；Noto 字体为 SIL OFL 1.1；PyMuPDF 为 AGPL／商业双许可。[第三方说明](THIRD_PARTY_NOTICES.md)
 
-欢迎[报告具体阅读卡点或错误](https://github.com/Levinesjob/source-annotations/issues/new?template=feedback.yml)：论文版本、页码、哪条解释或跳转出了问题。请移除私人和公司材料。
+[反馈具体卡点或错误](https://github.com/Levinesjob/source-annotations/issues/new?template=feedback.yml)：请附论文版本、页码，以及哪句解释或哪个入口出了问题，并移除私人资料。

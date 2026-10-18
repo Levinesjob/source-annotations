@@ -67,6 +67,20 @@ class AcademicGuideTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError,'shorten'):
                     plan_brief(compile_content(data),analyze_pdf(doc))
 
+    def test_optional_mechanism_flow_is_searchable_and_keeps_destinations(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);source,datafile,data=self.fixture(root)
+            data['reading_guide']['mechanism_flow']=[
+                {'expression':'Q K^T','meaning':'匹配分数'},
+                {'expression':'softmax','meaning':'归一化权重'},
+                {'expression':'weights V','meaning':'加权汇总'}]
+            datafile.write_text(json.dumps(data,ensure_ascii=False),encoding='utf-8')
+            prepend(source,datafile,root/'guided.pdf')
+            with fitz.open(root/'guided.pdf') as out:
+                self.assertTrue(out[0].search_for('加权汇总'))
+                self.assertTrue(out[0].search_for('softmax'))
+                self.assertEqual([l['page'] for l in out[0].get_links() if l['kind']==fitz.LINK_GOTO],[2])
+
     def test_encryption_rotation_and_overwrite_are_rejected(self):
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp);source,datafile,data=self.fixture(root)
@@ -82,14 +96,14 @@ class AcademicGuideTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'Encrypted'):prepend(root/'encrypted.pdf',datafile,root/'out.pdf')
 
 
-    def test_waypoint_requested_pages_fit_original_width(self):
-        source=ROOT/'local/waypoint-opd-v1.pdf'
+    def test_attention_formula_pages_fit_original_width(self):
+        source=ROOT/'local/attention-is-all-you-need-v1.pdf'
         if not source.exists():self.skipTest('Fetch pinned example for case integration test')
         from annotate import build
         from verify import verify
-        datafile=ROOT/'examples/waypoint-opd/annotations.json'
+        datafile=ROOT/'examples/attention-is-all-you-need/annotations.json'
         with tempfile.TemporaryDirectory() as tmp:
-            out=Path(tmp)/'pages.pdf';report=build(source,datafile,out,pages=[3,4])
+            out=Path(tmp)/'pages.pdf';report=build(source,datafile,out,pages=[3,4,5])
             self.assertTrue(all(p['extension_each_side']==0 for p in report['pages']))
             self.assertTrue(all(a['font_size']>=9 for a in report['annotations']))
             self.assertEqual(verify(source,datafile,out)['geometry_and_text'],'passed')
