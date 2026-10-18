@@ -56,3 +56,25 @@
 手机主图只将外围标题从“AI学术精读助手”改为“把解释放回正在读的原文旁”；论文裁图、原句、批注没有改写。阅读体验和差异通过真实局部展示，不靠抽象工具名称说明。新版记录见[四角改版验收](readme-framework-review.md)。
 
 本次后续改版共13个文件：README.md、THIRD_PARTY_NOTICES.md、docs/showcase.md、docs/readme-framework-review.md、scripts/showcase.py、scripts/framework_overview.py；showcase目录的hero-mobile.png、manifest.json，以及新增的framework-overview.png/.svg、framework-mobile.png/.svg、framework-manifest.json。上一节19文件为前一轮历史清单。
+
+## 用动作展示阅读过程
+
+README首图改用标题到核心观点的动画；正文分别展示补背景、回查原文两个动作，保留四角总览与原文/旁注对比。旧静态图仍在仓库，不覆盖或删除。
+
+```powershell
+.\.venv\Scripts\python.exe scripts/reading_motion.py
+```
+
+沿用本页的可选依赖，无需FFmpeg、浏览器、模型或API Key。生成六张GIF（桌面1200×740、窄屏780×1000）、六张静态末帧，以及[motion-manifest.json](../examples/waypoint-opd/showcase/motion-manifest.json)。中间三阶段检查图只放入被忽略的local/motion/，不进入发布包。
+
+| 动图 | 动作与来源 |
+|---|---|
+| motion-concept.gif | 固定v1真实标题裁图 → 已有导览标题与问题 → core_view；导览文本按屏宽重排，非重新生成理解 |
+| motion-background.gif | 先修知识 → 成品PDF三个真实外链 → 第一条外链的目标内容摘记；摘记依据Spinning Up Policies，不是网页截图 |
+| motion-evidence.gif | 导览第五项边界 → 真实GoTo入口 → a12原句；目标是原文第4页、PDF物理第5页，交叉核对报告坐标与原句 |
+
+每项都有对应的-mobile.gif与-still.png。每圈约12–13秒，关键画面停留2.6–5秒，单张GIF约0.38–0.56MB。没有闪烁或声音；README提供静态链接，并用picture的prefers-reduced-motion在系统选择减少动态效果时选静态末帧。不支持该媒体条件的客户端可手动打开静态版。
+
+**它们是基于真实内容与目标位置制作的动作示意，不是阅读器录屏。** 动图里的指针不能点击；README整张背景图链接到真实资料，其他两张链接到对应PDF。PDF里的链接可实际使用。动画速度不代表生成耗时或阅读提速。
+
+输入PDF、JSON与报告的SHA256必须匹配才会生成；脚本校验裁剪边界、文字越界、链接目的地与最终GIF时长/大小，记录输入及GIF/静态末帧哈希。它只读取已有产物，不修改PDF生成逻辑。见[动图验收记录](readme-motion-review.md)。

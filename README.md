@@ -6,14 +6,16 @@
 
 [先读导览 PDF](output/waypoint-opd-v1-reading-brief.pdf) · [看标注 PDF](output/waypoint-opd-v1-annotated.pdf) · [三种用法与依赖](#快速开始) · [完整说明](docs/usage.md)
 
-<a href="examples/waypoint-opd/showcase/hero.png">
+<a href="output/waypoint-opd-v1-reading-brief.pdf">
 <picture>
-  <source media="(max-width: 600px)" srcset="examples/waypoint-opd/showcase/hero-mobile.png">
-  <img src="examples/waypoint-opd/showcase/hero.png" alt="真实论文局部：英文正文保留在中间，术语、长句和结论边界的解释就在两侧。" width="1440">
+  <source media="(prefers-reduced-motion: reduce) and (max-width: 600px)" srcset="examples/waypoint-opd/showcase/motion-concept-mobile-still.png">
+  <source media="(prefers-reduced-motion: reduce)" srcset="examples/waypoint-opd/showcase/motion-concept-still.png">
+  <source media="(max-width: 600px)" srcset="examples/waypoint-opd/showcase/motion-concept-mobile.gif">
+  <img src="examples/waypoint-opd/showcase/motion-concept.gif" alt="从真实论文标题展开到中文主线和核心观点：先知道问题、方法与结果边界，再进入原文。" width="1200">
 </picture>
 </a>
 
-*真实 PDF 局部，非整页缩略图。中文解释与标记由本项目添加。*
+*标题 → 中文主线 → 核心观点。基于现有导览的动作示意，非录屏或即时生成；[静态版](examples/waypoint-opd/showcase/motion-concept-still.png)。*
 
 ## 摘要看懂了，正文却读不下去
 
@@ -89,20 +91,43 @@ python -m venv .venv
 
 ## 读起来是什么样
 
+### 背景不熟？从概念进入基础资料
+
+导览先用一两句话接上背景，讲不完的知识保留继续阅读的入口。下面从 Policy / RL 进入 Spinning Up 的 Policies 一节；**先补上这块知识，再回论文继续读**。
+
+<a href="https://spinningup.openai.com/en/latest/spinningup/rl_intro.html#policies">
+<picture>
+  <source media="(prefers-reduced-motion: reduce) and (max-width: 600px)" srcset="examples/waypoint-opd/showcase/motion-background-mobile-still.png">
+  <source media="(prefers-reduced-motion: reduce)" srcset="examples/waypoint-opd/showcase/motion-background-still.png">
+  <source media="(max-width: 600px)" srcset="examples/waypoint-opd/showcase/motion-background-mobile.gif">
+  <img src="examples/waypoint-opd/showcase/motion-background.gif" alt="先修概念到导览中的真实背景链接，再到 Spinning Up Policies 资料内容摘记。" width="1200">
+</picture>
+</a>
+
+*真实 PDF 链接与目标资料摘记的动作示意；目标画面不是网页截图。点击本图可打开资料；[静态版](examples/waypoint-opd/showcase/motion-background-still.png)。*
+
+### 看懂一个判断，再追到原文
+
+**导览里的概括有原文入口。** 动图用“方向一致，不等于老师一定正确”演示：点击导览中的正确性限制入口，定位到作者原句，继续核对上下文。
+
+<a href="output/waypoint-opd-v1-annotated.pdf">
+<picture>
+  <source media="(prefers-reduced-motion: reduce) and (max-width: 600px)" srcset="examples/waypoint-opd/showcase/motion-evidence-mobile-still.png">
+  <source media="(prefers-reduced-motion: reduce)" srcset="examples/waypoint-opd/showcase/motion-evidence-still.png">
+  <source media="(max-width: 600px)" srcset="examples/waypoint-opd/showcase/motion-evidence-mobile.gif">
+  <img src="examples/waypoint-opd/showcase/motion-evidence.gif" alt="从导览的边界判断点击 PDF 内部入口，跳到原论文第4页的限制原句及中文解释。" width="1200">
+</picture>
+</a>
+
+*动画按成品 PDF 的真实 GoTo 位置演示，非阅读器录屏。请在 PDF 中实际点击；[静态版](examples/waypoint-opd/showcase/motion-evidence-still.png)。*
+
+### 继续读正文，解释就在原句旁
+
 **读到术语，解释就留在旁边。** 下图上方是同页、同坐标的原句；右下是原有旁注放大，没有重写论文文字。
 
 [![原句与同页术语解释的前后对比](examples/waypoint-opd/showcase/before-after.png)](examples/waypoint-opd/showcase/before-after.png)
 
-**读到一个判断，继续看它的依据和边界。** 下面展示导览如何带你回到作者写下的限制，而不止停在整理后的结论。
-
-<a href="examples/waypoint-opd/showcase/evidence-navigation.png">
-<picture>
-  <source media="(max-width: 600px)" srcset="examples/waypoint-opd/showcase/evidence-mobile.png">
-  <img src="examples/waypoint-opd/showcase/evidence-navigation.png" alt="导览中的正确性限制入口跳到原论文第4页对应原句，并展示同页解释。" width="1440">
-</picture>
-</a>
-
-*真实 GoTo 位置的静态组合，并非操作录屏；请在 PDF 中点击体验。实测、推导、作者主张、导读解释分开标记，不把辅助解释当作作者结论。*
+实测、推导、作者主张、导读解释分开标记，不把辅助解释当作作者结论。[查看原文与旁注的完整空间关系](examples/waypoint-opd/showcase/hero.png)。
 
 ## 验证与边界
 
