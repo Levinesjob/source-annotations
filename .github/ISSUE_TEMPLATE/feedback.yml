@@ -11,10 +11,10 @@ body:
   - type: input
     id: source
     attributes:
-      label: 论文版本与页码
-      description: 请使用公开链接，勿上传公司或私人材料
+      label: 论文版本与页码（内容问题时填写）
+      description: 安装问题可留空；内容纠错请提供公开链接和原句位置，勿上传公司或私人材料
     validations:
-      required: true
+      required: false
   - type: textarea
     id: problem
     attributes:

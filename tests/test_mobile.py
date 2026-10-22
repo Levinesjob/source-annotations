@@ -13,6 +13,7 @@ spec=importlib.util.spec_from_file_location('mobile',ROOT/'scripts/mobile.py')
 # annotate is used by both generators.
 import sys
 sys.path.insert(0,str(ROOT/'scripts'))
+from annotate import build
 mobile=importlib.util.module_from_spec(spec);spec.loader.exec_module(mobile)
 
 class Targets(HTMLParser):
@@ -25,13 +26,22 @@ class Targets(HTMLParser):
         if tag=='img':self.images.append(a['src'])
 
 class MobileTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.source=ROOT/'local/attention-is-all-you-need-v1.pdf'
+        if not cls.source.exists():
+            raise unittest.SkipTest('Fetch pinned example for integration tests')
+        cls.data=ROOT/'examples/attention-is-all-you-need/annotations.json'
+        fixture=tempfile.TemporaryDirectory()
+        cls.addClassCleanup(fixture.cleanup)
+        cls.annotated=Path(fixture.name)/'annotated.pdf'
+        build(cls.source,cls.data,cls.annotated)
+
     def test_reader_uses_exact_pdf_pages_and_retains_source_targets(self):
-        source=ROOT/'local/attention-is-all-you-need-v1.pdf'
-        if not source.exists():self.skipTest('Fetch pinned example for integration test')
-        data=ROOT/'examples/attention-is-all-you-need/annotations.json'
+        source,data=self.source,self.data
         with tempfile.TemporaryDirectory() as tmp:
             out=Path(tmp)/'reader.html'
-            annotated=ROOT/'local/attention-preview/attention-is-all-you-need-v1-annotated.pdf'
+            annotated=self.annotated
             count=mobile.build_mobile(source,data,out,annotated)
             text=out.read_text(encoding='utf-8');p=Targets();p.feed(text)
             self.assertEqual(len(p.links),count)
@@ -58,12 +68,11 @@ class MobileTests(unittest.TestCase):
             self.assertNotIn('【解读·词义】',text)
 
     def test_changed_data_cannot_silently_use_stale_pdf(self):
-        source=ROOT/'local/attention-is-all-you-need-v1.pdf'
-        if not source.exists():self.skipTest('Fetch pinned example for integration test')
+        source=self.source
         with tempfile.TemporaryDirectory() as tmp:
             changed=Path(tmp)/'notes.json'
-            changed.write_bytes((ROOT/'examples/attention-is-all-you-need/annotations.json').read_bytes()+b' ')
+            changed.write_bytes(self.data.read_bytes()+b' ')
             with self.assertRaisesRegex(ValueError,'Regenerate'):
-                mobile.build_mobile(source,changed,Path(tmp)/'out.html',ROOT/'local/attention-preview/attention-is-all-you-need-v1-annotated.pdf')
+                mobile.build_mobile(source,changed,Path(tmp)/'out.html',self.annotated)
 
 if __name__=='__main__':unittest.main()
