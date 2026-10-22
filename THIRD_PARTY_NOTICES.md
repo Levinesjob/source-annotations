@@ -27,8 +27,8 @@ PyMuPDF 1.26.5：https://pymupdf.readthedocs.io/en/latest/about.html
 采用 AGPL 或商业许可；本包以依赖形式安装，不重新分发其二进制。新写的脚本采用MIT不代表可以忽略依赖条款。若以后做闭源在线服务，应单独确定适用许可。
 ## 展示素材与可选工具
 
-`examples/attention-is-all-you-need/showcase/`只包含本项目导览、原创说明图和少量原句/表格节选，不包含完整研究页；原文内容归原作者，新增中文解释和绘图脚本归本项目。图片不暗示原作者认可本项目。海报只参考用户提供图片的信息组织方式，未复制其虚构页面、错误页码和统计。
+`examples/attention-is-all-you-need/showcase/`包含本项目导览、说明图、用户提供海报的修订版和少量原句/表格节选，不包含完整研究页；原文内容归原作者，新增中文解释和绘图脚本归本项目。图片不暗示原作者认可本项目。`overview.png`沿用用户提供的视觉并经AI重排为横版，图中页面明确标为功能示意，不是实际PDF截图；案例及统计改为当前Attention记录。不能将其作为成品版式、论文原句或阅读效率的验证依据。
 
-静态图的裁片、坐标及哈希见[素材说明](docs/showcase.md)。不生成动图或虚构交互截图。
+真实截图的裁片、坐标及哈希，以及功能示意图的范围见[素材说明](docs/showcase.md)。不生成动图，不把示意页面说成实际截图。
 
 可选Pillow 12.3.0按[官方许可](https://pillow.readthedocs.io/en/stable/about.html#license)适用MIT-CMU，不加入PDF必需运行依赖。

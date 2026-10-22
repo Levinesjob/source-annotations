@@ -8,10 +8,9 @@ Read the paper, not just the summary.
 
 [看真实效果](docs/showcase.md) · [下载预览版](https://github.com/Levinesjob/source-annotations/releases/tag/v0.1.0-preview.2) · [本地生成](#2-本地复现现成样例) · [处理新论文](#3-安装-skill处理新论文) · [反馈问题](https://github.com/Levinesjob/source-annotations/issues/new?template=feedback.yml)
 
-<picture>
-  <source media="(max-width: 600px)" srcset="examples/attention-is-all-you-need/showcase/reading-poster-mobile.png">
-  <img src="examples/attention-is-all-you-need/showcase/reading-poster.png" alt="真实导览、原句高亮和同页中文旁注：阅读辅助回到原文旁">
-</picture>
+[![Source Annotations 功能总览：阅读导览、原文旁注、证据追溯与可复现产物](examples/attention-is-all-you-need/showcase/overview.png)](docs/showcase.md)
+
+功能示意图；实际导览、原句旁注与跳转依据见[真实成果展示](docs/showcase.md)。
 
 ## 读到难处，解释就在旁边
 
