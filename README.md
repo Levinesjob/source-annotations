@@ -6,7 +6,7 @@
 
 Read the paper, not just the summary.
 
-[看真实效果](docs/showcase.md) · [本地生成](#2-本地复现现成样例) · [处理新论文](#3-安装-skill处理新论文) · [反馈问题](https://github.com/Levinesjob/source-annotations/issues/new?template=feedback.yml)
+[看真实效果](docs/showcase.md) · [下载预览版](https://github.com/Levinesjob/source-annotations/releases/tag/v0.1.0-preview.2) · [本地生成](#2-本地复现现成样例) · [处理新论文](#3-安装-skill处理新论文) · [反馈问题](https://github.com/Levinesjob/source-annotations/issues/new?template=feedback.yml)
 
 <picture>
   <source media="(max-width: 600px)" srcset="examples/attention-is-all-you-need/showcase/reading-poster-mobile.png">
@@ -45,6 +45,8 @@ Read the paper, not just the summary.
 ### 2. 本地复现现成样例
 
 需要 **Python 3.11+、PyMuPDF 1.26.5**；中文字体和许可随仓库提供。下面使用 Windows PowerShell，在新目录克隆后执行：
+
+不使用 Git 时，可在[预览版发布页](https://github.com/Levinesjob/source-annotations/releases/tag/v0.1.0-preview.2)下载 Source code ZIP，解压后进入包含 `SKILL.md` 的目录，从 `python -m venv .venv` 开始运行。仓库包含完整 CJK 字体，首次获取源码较大。
 
 ```powershell
 git clone --depth 1 https://github.com/Levinesjob/source-annotations.git

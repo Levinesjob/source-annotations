@@ -12,7 +12,7 @@
 - 35条标注、5处公式解释、11个导览入口；两种PDF均为1页导览＋15页原文。
 - 保留现有Skill、标注数据、底层生成脚本、同版HTML及验证规则。
 - 复用真实展示与原有脚本，不添加新的教学Demo、网站或生成框架。
-- 当前发布准备已完成新目录复现、README整理和反馈入口调整；公开仓库同步状态见[发布准备记录](review/RELEASE-2026-10-22.md)及状态记录。历史Release不改写。
+- 已完成新目录复现、README整理和反馈入口调整，公开 [v0.1.0-preview.2](https://github.com/Levinesjob/source-annotations/releases/tag/v0.1.0-preview.2) 已发布。验证范围与远程下载缺口见[发布准备记录](review/RELEASE-2026-10-22.md)及状态记录。历史Release不改写。
 - 历史与最新实际测试范围见[状态记录](review/STATUS.md)，未通过的检查见[待办](TODO.md)。
 
 ## 发布准备顺序
